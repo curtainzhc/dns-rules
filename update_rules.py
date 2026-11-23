@@ -21,11 +21,13 @@ CAT = {
     "16":"国内广告","08":"国际广告/隐私","09":"国内广告","17":"国内广告","03":"国内广告",
     "10":"隐私追踪","06":"国内广告","01":"国内广告","21":"威胁情报","19":"国内广告",
     "04":"国内广告","20":"威胁情报","23":"赌博/成人","18":"综合hosts",
+    "41":"综合hosts",
 }
 CAP = {}               # 不限制单源，全部保留
 ORDER = ["24","25","26","27","28","29","30","31","32","33","34","22",
          "05","12","13","11","14","16","08","09","17","03","10","06","01",
-         "21","19","04","20","23","18"]
+         "21","19","04","20","23","18",
+         "41"]   # 41 trli-Pro 超大全球黑名单（1134万），放最后：先到的源优先归属，避免抢占高价值源
 
 # ===== 精简版价值分级（数字越小越优先保留）=====
 # 1 = 日常必用：国内广告 / 设备原生广告 / 主流隐私
@@ -40,7 +42,7 @@ LITE_VALUE = {
     # 2 安全刚需（含新加的钓鱼/Fake/Hoster/DoH绕过）
     "37":2,"39":2,"40":2,"35":2,"20":2,"22":2,
     # 3 补充
-    "21":3,"08":3,"36":3,"38":3,"18":3,
+    "21":3,"08":3,"36":3,"38":3,"18":3,"41":3,
     # 99 精简版剔除
     "23":99,
 }
@@ -121,9 +123,43 @@ def _try_url(u, timeout=40):
     except Exception:
         return None
 
+def fetch_large_range(url, out, total, parts=24, workers=12, timeout=120):
+    """大文件用 HTTP Range 并行分片下载（gh-proxy 支持 206），避免慢速流整体超时。"""
+    import urllib.error
+    with open(out, "wb") as f:
+        f.truncate(total)
+    size = total // parts
+    def get(i):
+        s = i * size
+        e = total - 1 if i == parts - 1 else (i + 1) * size - 1
+        for _ in range(4):
+            try:
+                req = urllib.request.Request(url, headers={"Range": f"bytes={s}-{e}", "User-Agent": "Mozilla/5.0"})
+                with urllib.request.urlopen(req, timeout=timeout) as resp:
+                    buf = resp.read()
+                if len(buf) == e - s + 1:
+                    with open(out, "r+b") as f:
+                        f.seek(s); f.write(buf)
+                    return True
+            except Exception:
+                pass
+        return False
+    with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as ex:
+        ok = sum(1 for r in ex.map(get, range(parts)) if r)
+    return ok == parts
+
 def fetch_one(num, name, url):
     """拉取单源：直连与代理候选并行竞速，谁先成功用谁；全失败则沿用旧缓存。"""
     out = os.path.join(RAW, f"{num}_{name}.txt")
+    # 41 trli-Pro 是 247MB 超大文件，走 Range 分片下载
+    if num == "41":
+        proxy = "https://gh-proxy.com/" + url
+        total = 258925616
+        if fetch_large_range(proxy, out, total) and os.path.getsize(out) == total:
+            return num, True, total
+        if os.path.exists(out) and os.path.getsize(out) > 0:
+            return num, False, -os.path.getsize(out)
+        return num, False, 0
     candidates = [url]
     if "github.com" in url:
         candidates += ["https://gh-proxy.com/" + url,
@@ -245,22 +281,36 @@ def build():
         return False
 
     cand = {}          # d -> (outfmt, cat)
+    # 内存优化：源用位掩码(int)记录，41 个源 = 41 位，每域名一个 int 而非一个 set。
+    # 1134 万条 trli 域名下，set 会吃 2-3GB 直接撑爆 8GB cgroup；int 仅 ~28B/个。
+    def bit(n): return 1 << int(n)
+    src_mask = {}      # d -> 收录它的源位掩码
     src_of = {}        # d -> 价值最优的源编号（精简版按此排价值）
-    src_all = {}       # d -> 收录过它的所有源编号集合（精简版用于剔除用不上的源）
+    LITE_EXCLUDE_MASK = sum(bit(n) for n in LITE_EXCLUDE)
+    # 每个源编号对应的价值，用于 refresh 时按位取最优
+    NUM_VALUE = [(int(n), LITE_VALUE.get(n, 3)) for n in sorted(items)]
     per_src = {}
     def add(d, outfmt, cat, num):
-        # 记录所有收录该域名的源（含重复），用于精简版剔除逻辑
-        src_all.setdefault(d, set()).add(num)
+        m = bit(num)
+        src_mask[d] = src_mask.get(d, 0) | m
         if d in cand or d in allow_set or has_allowed_parent(d):
             return False
         cand[d] = (outfmt, cat)
         src_of[d] = num
         return True
     def refresh_src_of():
-        # 每个域名取「收录它的源里价值最优(数字最小)」的那个，供精简版排序
-        for d, nums in src_all.items():
-            if d in cand:
-                src_of[d] = min(nums, key=lambda n: LITE_VALUE.get(n, 3))
+        # 每个域名取「收录它的源里价值最小」的那个，供精简版排序；按位扫描避免存 set
+        for d, mask in src_mask.items():
+            if d not in cand:
+                continue
+            best, bestv = None, 99
+            for n, v in NUM_VALUE:
+                if (mask >> n) & 1 and v < bestv:
+                    best, bestv = n, v
+                    if bestv == 0:
+                        break
+            if best is not None:
+                src_of[d] = best
 
     for num in ORDER + [n for n in sorted(items) if n not in ORDER and n not in SKIP_NUMS]:
         if num in SKIP_NUMS or num not in items:
@@ -295,6 +345,14 @@ def build():
                     d = norm(core.split("^")[0].split("$")[0].split("/")[0])
                     if valid(d) and add(d, f"||{d}^", cat, num): added += 1
                     continue
+                # 41 trli-Pro 用单竖线 |域名^ 格式（AdGuard Home 风格）
+                if body.startswith("|") and body.endswith("^"):
+                    core = body[1:-1]
+                    if "$" in core or "/" in core or "*" in core:
+                        continue
+                    d = norm(core)
+                    if valid(d) and add(d, f"||{d}^", cat, num): added += 1
+                    continue
                 d = norm(body)
                 if valid(d) and add(d, f"0.0.0.0 {d}", cat, num): added += 1
         per_src[num] = added
@@ -323,7 +381,7 @@ def build():
     n_allow = len(allow_set) + len(allow_wild)
     lite_quota = max(0, LITE_TOTAL - n_allow)
     lite_pool = [kv for kv in final_items
-                 if not (src_all.get(kv[0], set()) & LITE_EXCLUDE)]
+                 if not (src_mask.get(kv[0], 0) & LITE_EXCLUDE_MASK)]
     lite_pool.sort(key=lambda kv: (0 if kv[0] in LITE_MUST else LITE_VALUE.get(src_of.get(kv[0]), 3)))
     lite_items = lite_pool[:lite_quota]
     lite_rules = sorted(v for d, (v, _) in lite_items)
