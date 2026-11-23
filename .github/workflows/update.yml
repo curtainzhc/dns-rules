@@ -7,7 +7,7 @@ on:
     - cron: '0 */6 * * *'
   workflow_dispatch:
 
-# 允许脚本把更新后的规则提交回仓库
+# 允许脚本把更新后的规则提交回仓库、上传 Release
 permissions:
   contents: write
 
@@ -26,15 +26,26 @@ jobs:
       - name: 拉取原项目并合并去重
         run: python3 update_rules.py
 
-      - name: 提交更新（有变化才提交）
+      - name: 提交小文件（精简版/白名单/元数据）
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/rules.txt data/rules-lite.txt data/allow.txt data/meta.json
+          git add data/rules-lite.txt data/allow.txt data/meta.json
           if git diff --cached --quiet; then
-            echo "规则无变化，跳过提交"
+            echo "小文件无变化，跳过提交"
           else
             git commit -m "自动更新规则 $(date -u +'%Y-%m-%d %H:%M UTC')"
             git push
-            echo "规则已更新并提交"
+            echo "小文件已更新并提交"
           fi
+
+      - name: 上传全量规则到 Release（256MB 超 Git 单文件限制）
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: full-rules
+          name: 全量规则（1147万条）
+          body: 自动更新的全量去重规则，供 AdGuard Home 使用。精简版见仓库 data/rules-lite.txt。
+          files: data/rules.txt
+          keep_standard: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
