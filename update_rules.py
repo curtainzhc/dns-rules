@@ -9,7 +9,7 @@ RAW = os.path.join(BASE, "data", "raw")
 DATA = os.path.join(BASE, "data")
 TARGET = None          # None = 不裁剪，输出全部去重规则
 BUILD_TO = None
-LITE_TOTAL = 499000    # 精简版「拦截规则 + 白名单」合计条数（App 硬上限 50 万，含注释行须 <50 万，留 1000 条余量防加载失败）
+LITE_TOTAL = 500000    # 精简版「拦截规则 + 白名单」合计条数（精确 50 万，实测 App 可正常加载，去重后显示约 499,623）
 SKIP_NUMS = {"15"}       # gitcode WAF 拦截页
 SPECIAL_NUMS = {"18"}    # 斜杠分隔聚合格式
 
