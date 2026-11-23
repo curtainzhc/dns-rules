@@ -63,7 +63,16 @@ def _try_url(u, timeout=40):
     try:
         req = urllib.request.Request(u, headers={"User-Agent": "Mozilla/5.0"})
         with urllib.request.urlopen(req, timeout=timeout) as resp:
-            data = resp.read()
+            data = bytearray()
+            t0 = time.time()
+            while True:
+                chunk = resp.read(65536)
+                if not chunk:
+                    break
+                data.extend(chunk)
+                if time.time() - t0 > timeout:
+                    return None   # 慢速流整体超时，避免单个源拖死整轮更新
+            data = bytes(data)
         head = data[:300].decode("utf-8", "ignore").lower()
         if "<!doctype" in head or "<html" in head or "访问被拦截" in data[:500].decode("utf-8", "ignore"):
             return None
@@ -118,6 +127,8 @@ def convert_special(num, name):
         if "." in d and " " not in d and ":" not in d and "[" not in d and "]" not in d and pat.match(d):
             if d not in seen:
                 seen.add(d); out.append(f"0.0.0.0 {d}")
+    if not out:
+        return 0   # 转换结果为空时不覆盖缓存，避免下载异常导致该源永久失效
     with open(path, "w", encoding="utf-8") as f:
         f.write("\n".join(out) + "\n")
     return len(out)
