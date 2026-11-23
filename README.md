@@ -53,3 +53,49 @@ https://gh-proxy.com/https://raw.githubusercontent.com/curtainzhc/dns-rules/main
 - 白名单 1.2 万条完整保留（防误杀，不动）
 
 全量版则不做任何剔除与精选，保留全部规则。
+
+## 规则来源与致谢
+
+本项目的全部规则来自以下开源项目与社区，版权归各自作者所有。感谢他们长期维护与无偿分享，让这份订阅成为可能。
+
+### 国内广告与综合拦截
+
+| 规则源 | 作者 / 组织 | 项目地址 |
+|---|---|---|
+| 天影 ADS 拦截 / 白名单 | xiaolei7172 | https://github.com/xiaolei7172/ADS |
+| anti-AD | anti-AD 团队 | https://anti-ad.net/ |
+| 217heidai | 217heidai | https://github.com/217heidai/adblockfilters |
+| AWAvenue | uura | https://cdn.uura.cn/AWAvenue/AWAvenue-Ads-Rule.txt |
+| GOODBYEADS 拦截 / 白名单 | 8680 | https://github.com/8680/GOODBYEADS |
+| neoHosts | neoFelhz | https://github.com/neoFelhz/neohosts |
+| xinggsf | xinggsf | https://github.com/xinggsf/Adblock-Plus-Rule |
+| ADgk | banbendalao | https://github.com/banbendalao/ADgk |
+| DD-AD | afwfv | https://github.com/afwfv/DD-AD |
+| jiekouAD | damengzhu | https://github.com/damengzhu/banad |
+| HG | 2771936993 | https://github.com/2771936993/HG |
+| SM-AdHosts | 2Gardon | https://github.com/2Gardon/SM-Ad-FuckU-hosts |
+| 666rules | qq5460168 | https://github.com/qq5460168/666 |
+| dnshosts-all | Potterli20 | https://github.com/Potterli20/file |
+| AdRules | Cats-Team | https://github.com/Cats-Team/AdRules |
+
+### 隐私追踪
+
+| 规则源 | 作者 / 组织 | 项目地址 |
+|---|---|---|
+| EasyPrivacy | EasyList / eyeo 社区 | https://easylist.to/ |
+
+### hagezi 系列（威胁情报 · 设备原生广告 · 防绕路 · 钓鱼托管）
+
+| 规则源 | 作者 / 组织 | 项目地址 |
+|---|---|---|
+| pro / tif / dyndns / gambling / Fake / Hoster / DoH 绕过，及 TikTok、Amazon、Apple、Huawei、Windows/Office、Samsung、LG webOS、Roku、vivo、OPPO/realme、小米等原生广告规则 | hagezi | https://github.com/hagezi/dns-blocklists |
+
+### 官方安全过滤
+
+| 规则源 | 作者 / 组织 | 项目地址 |
+|---|---|---|
+| AdGuard DNS Filter | AdGuard Team | https://github.com/AdguardTeam/AdGuardSDNSFilter |
+| AdGuard 钓鱼过滤（filter_30） | AdGuard Team | https://github.com/AdguardTeam/HostlistsRegistry |
+| OISD Big | OISD | https://oisd.nl/ |
+
+> 以上项目按各自开源许可证发布，本订阅仅做格式转换与合并去重，规则归属与解释权归原作者。若某源作者希望移除，可联系我们下架。再次感谢所有维护者的付出。
