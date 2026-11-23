@@ -32,3 +32,9 @@
 32|hagezi-vivo|https://hagezi-mirror.dnsbunker.org/adblock/native.vivo.txt
 33|hagezi-oppo|https://hagezi-mirror.dnsbunker.org/adblock/native.oppo-realme.txt
 34|hagezi-xiaomi|https://hagezi-mirror.dnsbunker.org/adblock/native.xiaomi.txt
+35|hagezi-DoH绕过|https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/doh-vpn-proxy-bypass.txt
+36|AdGuard-DNS|https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt
+37|AdGuard-钓鱼|https://adguardteam.github.io/HostlistsRegistry/assets/filter_30.txt
+38|OISD-Big|https://big.oisd.nl
+39|hagezi-Fake|https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/fake.txt
+40|hagezi-Hoster|https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/hoster.txt
