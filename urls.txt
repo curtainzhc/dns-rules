@@ -38,3 +38,4 @@
 38|OISD-Big|https://big.oisd.nl
 39|hagezi-Fake|https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/fake.txt
 40|hagezi-Hoster|https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/hoster.txt
+41|trli-Pro|https://github.com/Potterli20/file/releases/download/ad-hosts-pro/ad-adguardhome.txt
