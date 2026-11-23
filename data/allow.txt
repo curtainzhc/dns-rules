@@ -1,5 +1,5 @@
 ! 放行白名单 | 与拦截规则一并导入，优先级最高
-! 纯域名 11471 + 通配符 557
+! 纯域名 11467 + 通配符 557
 ============================================================
 
 @@||000714.xyz^
@@ -19,7 +19,6 @@
 @@||10play.com.au^
 @@||10short.pro^
 @@||111.75.255.103^
-@@||112.2o7.net^
 @@||113.com.tw^
 @@||115.28.114.149^
 @@||1188lv.adocean.pl^
@@ -1765,7 +1764,6 @@
 @@||browser.events.data.microsoft.com^
 @@||browser.events.data.msn.com^
 @@||browser.pipe.aria.microsoft.com^
-@@||browser.sentry-cdn.com^
 @@||browserbench.org^
 @@||browserscope.org^
 @@||brutalmania.io^
@@ -4112,7 +4110,6 @@
 @@||g.adspeed.net^
 @@||g.alicdn.com^
 @@||g.csdnimg.cn^
-@@||g.doubleclick.net^
 @@||g.gtimg.cn^
 @@||g.live.com^
 @@||g.msn.com^
@@ -9227,7 +9224,6 @@
 @@||static.lci.fr^
 @@||static.leaddyno.com^
 @@||static.mcmod.cn^
-@@||static.media.net^
 @@||static.mediav.com^
 @@||static.mega.co.nz^
 @@||static.mega.nz^
