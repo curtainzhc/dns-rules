@@ -7,8 +7,8 @@ import os, re, json, time, urllib.request, concurrent.futures
 BASE = os.path.dirname(os.path.abspath(__file__))
 RAW = os.path.join(BASE, "data", "raw")
 DATA = os.path.join(BASE, "data")
-TARGET = 500000
-BUILD_TO = TARGET + 30000
+TARGET = None          # None = 不裁剪，输出全部去重规则
+BUILD_TO = None
 SKIP_NUMS = {"15"}       # gitcode WAF 拦截页
 SPECIAL_NUMS = {"18"}    # 斜杠分隔聚合格式
 
@@ -21,7 +21,7 @@ CAT = {
     "10":"隐私追踪","06":"国内广告","01":"国内广告","21":"威胁情报","19":"国内广告",
     "04":"国内广告","20":"威胁情报","23":"赌博/成人","18":"综合hosts",
 }
-CAP = {"01":60000, "21":250000}
+CAP = {}               # 不限制单源，全部保留
 ORDER = ["24","25","26","27","28","29","30","31","32","33","34","22",
          "05","12","13","11","14","16","08","09","17","03","10","06","01",
          "21","19","04","20","23","18"]
@@ -164,12 +164,9 @@ def build():
         if not os.path.exists(p):
             per_src[num] = 0
             continue
-        cap = CAP.get(num)
         added = 0
         with open(p, encoding="utf-8", errors="ignore") as fh:
             for line in fh:
-                if cap is not None and added >= cap:
-                    break
                 s = line.strip()
                 if not s or s.startswith(("!", "#", "[")) or "##" in s:
                     continue
@@ -195,8 +192,6 @@ def build():
                 d = norm(body)
                 if valid(d) and add(d, f"0.0.0.0 {d}", cat): added += 1
         per_src[num] = added
-        if len(cand) >= BUILD_TO:
-            break
 
     net_domains = {d for d, (v, _) in cand.items() if v.startswith("||")}
     removed = 0
@@ -208,7 +203,7 @@ def build():
             if ".".join(parts[i:]) in net_domains:
                 del cand[d]; removed += 1; break
 
-    final_items = list(cand.items())[:TARGET]
+    final_items = list(cand.items())
     final_rules = sorted(v for d, (v, _) in final_items)
     cat_count = {}
     for d, (v, c) in final_items:
