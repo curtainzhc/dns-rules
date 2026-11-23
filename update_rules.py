@@ -9,7 +9,7 @@ RAW = os.path.join(BASE, "data", "raw")
 DATA = os.path.join(BASE, "data")
 TARGET = None          # None = 不裁剪，输出全部去重规则
 BUILD_TO = None
-LITE_TOTAL = 499900    # 精简版纯拦截条数（50 万上限减 100 条，规避订阅 App 的 50 万硬上限）
+LITE_TOTAL = 499998    # 精简版纯拦截条数（50 万上限减 2 条，规避订阅 App 的 50 万硬上限）
 SKIP_NUMS = {"15"}       # gitcode WAF 拦截页
 SPECIAL_NUMS = {"18"}    # 斜杠分隔聚合格式
 
