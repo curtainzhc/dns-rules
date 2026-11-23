@@ -156,7 +156,7 @@ def build():
         cand[d] = (outfmt, cat)
         return True
 
-    for num in ORDER:
+    for num in ORDER + [n for n in sorted(items) if n not in ORDER and n not in SKIP_NUMS]:
         if num in SKIP_NUMS or num not in items:
             continue
         name = items[num][0]
