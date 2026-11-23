@@ -1,5 +1,5 @@
 ! 放行白名单 | 与拦截规则一并导入，优先级最高
-! 纯域名 11520 + 通配符 557
+! 纯域名 11471 + 通配符 557
 ============================================================
 
 @@||000714.xyz^
@@ -70,7 +70,6 @@
 @@||2ipcore.com^
 @@||2kspecialist.net^
 @@||2mdn.net^
-@@||2o7.net^
 @@||2urs.com^
 @@||316.coolapk1s.com^
 @@||31vcd.com^
@@ -343,7 +342,6 @@
 @@||ad.cityu.edu.hk^
 @@||ad.crwdcntrl.net^
 @@||ad.de.doubleclick.net^
-@@||ad.doubleclick.net^
 @@||ad.ettoday.net^
 @@||ad.ext.azure.cn^
 @@||ad.ext.azure.com^
@@ -441,11 +439,9 @@
 @@||adrianoluis.net^
 @@||adrinolinks.in^
 @@||adroll.com^
-@@||ads-api.twitter.com^
 @@||ads-i.org^
 @@||ads-static.conde.digital^
 @@||ads-ti9ni4.blogspot.com^
-@@||ads-twitter.com^
 @@||ads.95516.com^
 @@||ads.a-static.com^
 @@||ads.adthrive.com^
@@ -488,7 +484,6 @@
 @@||ads.mxhnkn.pro^
 @@||ads.nextday.media^
 @@||ads.openai.com^
-@@||ads.pinterest.com^
 @@||ads.poshtata.online^
 @@||ads.privacy.qq.com^
 @@||ads.programattik.com^
@@ -508,14 +503,12 @@
 @@||ads.tdbank.com^
 @@||ads.temu.com^
 @@||ads.themoneytizer.com^
-@@||ads.tiktok.com^
 @@||ads.twitter.com^
 @@||ads.viralize.tv^
 @@||ads.vk.com^
 @@||ads.vk.ru^
 @@||ads.x.com^
 @@||ads.yandex.com^
-@@||ads.youtube.com^
 @@||ads.zw.pl^
 @@||ads2.banaraswap.in^
 @@||ads2.contentabc.com^
@@ -530,7 +523,6 @@
 @@||adserver.pandora.com^
 @@||adserver.rhombusads.com^
 @@||adserver.skiresort-service.com^
-@@||adservice.google.com^
 @@||adservice.google.com.tr^
 @@||adservice.google.pl^
 @@||adserving.unibet.com^
@@ -740,7 +732,6 @@
 @@||amazon.sa^
 @@||amazon.se^
 @@||amazon.sg^
-@@||amazonaws.com^
 @@||amazoncustomerservice.d2.sc.omtrdc.net^
 @@||amc-widgets.crowdtwist.com^
 @@||amdc.m.taobao.com^
@@ -757,7 +748,6 @@
 @@||amsarkadium-a.akamaihd.net^
 @@||amtonline.com.br^
 @@||an-sm.naughtycdn.com^
-@@||an.facebook.com^
 @@||an.gr-wcon.com^
 @@||an.yandex.ru^
 @@||an1me.nl^
@@ -778,12 +768,10 @@
 @@||analytics.disneyinternational.com^
 @@||analytics.edgekey.net^
 @@||analytics.freetubeapp.io^
-@@||analytics.google.com^
 @@||analytics.itunes.apple.com^
 @@||analytics.kbjfree.com^
 @@||analytics.ladmedia.fr^
 @@||analytics.prensaiberica.es^
-@@||analytics.tiktok.com^
 @@||analytics.twitter.com^
 @@||analytics.yinxiang.com^
 @@||ananas.chaoxing.com^
@@ -1213,7 +1201,6 @@
 @@||apple-relay.apple.com^
 @@||apple-relay.cloudflare.com^
 @@||apple-relay.fastly-edge.com^
-@@||apple.com^
 @@||appledaily.com^
 @@||appledaily.com.hk^
 @@||appledaily.com.tw^
@@ -1519,7 +1506,6 @@
 @@||basemapstyles-api.arcgis.com^
 @@||basicthinking.de^
 @@||basinnow.com^
-@@||bat.bing.com^
 @@||batch.id^
 @@||battlecats-db.com^
 @@||battlecats-db.imgs-server.com^
@@ -1813,7 +1799,6 @@
 @@||buffalowildwings.com^
 @@||buffer.com^
 @@||bug.mcmod.cn^
-@@||bugsnag.com^
 @@||bugswave.com^
 @@||builder.io^
 @@||bulurum.com^
@@ -3305,7 +3290,6 @@
 @@||douban.com^
 @@||doubanio.com^
 @@||doubibackup.com^
-@@||doubleclick.net^
 @@||doubleclickbygoogle.com^
 @@||douyincdn.com^
 @@||douyinliving.com^
@@ -3786,7 +3770,6 @@
 @@||faas-fe-prd-ext.prd.aws-cb.nl^
 @@||faberlic.com^
 @@||face.t.sinajs.cn^
-@@||facebook.com^
 @@||facepic.qidian.com^
 @@||facetoshi.live^
 @@||faculty.uml.edu^
@@ -4267,7 +4250,6 @@
 @@||gelbooru.com^
 @@||gemhu.adocean.pl^
 @@||gemini.google.com^
-@@||gemini.yahoo.com^
 @@||gemius.pl^
 @@||generacionretro.net^
 @@||genesyslogic.com^
@@ -4428,8 +4410,6 @@
 @@||goodreturns.in^
 @@||goodssh.com^
 @@||goodtoknow.co.uk^
-@@||google-analytics.com^
-@@||google.com^
 @@||google.com.tr^
 @@||google.de^
 @@||google.es^
@@ -4445,11 +4425,9 @@
 @@||googleads.g.doubleclick.net^
 @@||googleads.github.io^
 @@||googleads4.g.doubleclick.net^
-@@||googleadservices.com^
 @@||googleapis.com^
 @@||googledrivelinks.com^
 @@||googleoptimize.com^
-@@||googlesyndication.com^
 @@||googletagmanager.com^
 @@||googletagservices.com^
 @@||googlevideo.com^
@@ -4779,7 +4757,6 @@
 @@||hot.browser.miui.com^
 @@||hotcopper.com.au^
 @@||hotel.17u.cn^
-@@||hotjar.com^
 @@||hotmail.com^
 @@||hotmediahub.com^
 @@||hotmo.org^
@@ -4920,7 +4897,6 @@
 @@||ichnaea-web.netflix.com^
 @@||icloud-content.com^
 @@||icloud.apple.com^
-@@||icloud.com^
 @@||ico.es^
 @@||iconmonstr.com^
 @@||icons.axm-usercontent-apple.com^
@@ -5863,7 +5839,6 @@
 @@||linka.page^
 @@||linkbucks.com^
 @@||linkconnector.com^
-@@||linkedin.com^
 @@||linkjust.com^
 @@||linkneverdie.com^
 @@||linkonclick.com^
@@ -6463,8 +6438,6 @@
 @@||metrics.el-mundo.net^
 @@||metrics.foxnews.com^
 @@||metrics.howstuffworks.com^
-@@||metrics.icloud.com^
-@@||metrics.mzstatic.com^
 @@||metrics.nationwide.co.uk^
 @@||metrics.nissanusa.com^
 @@||metrics.target.com^
@@ -6563,7 +6536,6 @@
 @@||mitaku.net^
 @@||mitsubishiclub.cz^
 @@||mitti.se^
-@@||miui.com^
 @@||miuipro.ru^
 @@||mivideo.cdn.pandora.xiaomi.com^
 @@||mivideo.g.mi.com^
@@ -6862,7 +6834,6 @@
 @@||mywrestling.com.pl^
 @@||myxclip.com^
 @@||myyouporn.org^
-@@||mzstatic.com^
 @@||n.163.com^
 @@||n.sinaimg.cn^
 @@||n0va-static.mihoyo.com^
@@ -7471,8 +7442,6 @@
 @@||package.wallpaper.cdn.pandora.xiaomi.com.lan^
 @@||packagebssdlbig.tx.kugou.com^
 @@||pagead.l.doubleclick.net^
-@@||pagead2.googleadservices.com^
-@@||pagead2.googlesyndication.com^
 @@||pages.dev^
 @@||pages.github.com^
 @@||pahe.plus^
@@ -7514,7 +7483,6 @@
 @@||partner.market.yandex.ru^
 @@||partner.o2online.de^
 @@||partner.speedtestcustom.com^
-@@||partnerads.ysm.yahoo.com^
 @@||partners2.das-onlinespiel.de^
 @@||party.163.com^
 @@||parzibyte.me^
@@ -7685,7 +7653,6 @@
 @@||pingtas.qq.com^
 @@||pingtcss.qq.com^
 @@||pinsystem.co.uk^
-@@||pinterest.com^
 @@||pip-player.zum.com^
 @@||pipocas.tv^
 @@||pisupisu.pl^
@@ -7696,7 +7663,6 @@
 @@||pix2.services.tvn.pl^
 @@||pixabay.com^
 @@||pixel.adsafeprotected.com^
-@@||pixel.facebook.com^
 @@||pixel.prime.amazon.dev^
 @@||pixel.quantserve.com^
 @@||pixel.sitescout.com^
@@ -8239,11 +8205,9 @@
 @@||redbull.com^
 @@||redcdn.pl^
 @@||reddit.app.link^
-@@||reddit.com^
 @@||redditenhancementsuite.com^
 @@||reddithelp.com^
 @@||redditinc.com^
-@@||redditmedia.com^
 @@||redefine.hit.stat24.com^
 @@||redefineadpl.hit.gemius.pl^
 @@||redfin.com^
@@ -8492,7 +8456,6 @@
 @@||s2.hdslb.com^
 @@||s2.ssl.qhres2.com^
 @@||s3-us-east-1.ossfiles.com^
-@@||s3.amazonaws.com^
 @@||s3.ap-southeast-1.qiniucs.com^
 @@||s3.ap-southeast-2.qiniucs.com^
 @@||s3.ap-southeast-3.qiniucs.com^
@@ -8542,7 +8505,6 @@
 @@||sams.11freunde.de^
 @@||sams.spiegel.de^
 @@||samsclub.com^
-@@||samsung.com^
 @@||samsunhaber.com^
 @@||sandbox.cryptpad.info^
 @@||sankakucomplex.com^
@@ -9130,7 +9092,6 @@
 @@||ssl-images-amazon.com^
 @@||ssl-thumb2.720static.com^
 @@||ssl.geoplugin.net^
-@@||ssl.google-analytics.com^
 @@||ssl.gstatic.com^
 @@||ssl.kaptcha.com^
 @@||ssl.msdk.qq.com^
@@ -9222,7 +9183,6 @@
 @@||static.360buyimg.com^
 @@||static.91haoka.cn^
 @@||static.adman.gr^
-@@||static.ads-twitter.com^
 @@||static.adsafeprotected.com^
 @@||static.adtrue24.com^
 @@||static.airbridge.io^
@@ -9243,7 +9203,6 @@
 @@||static.crunchyroll.com^
 @@||static.cz.prg.cmestatic.com^
 @@||static.deepseek.com^
-@@||static.doubleclick.net^
 @@||static.e.189.cn^
 @@||static.editor.naver.net^
 @@||static.ex.co^
@@ -9327,7 +9286,6 @@
 @@||staticxx.facebook.com^
 @@||stats.britishbaseball.org.uk^
 @@||stats.e-go.gr^
-@@||stats.g.doubleclick.net^
 @@||stats.gc.apple.com^
 @@||stats.gleague.nba.com^
 @@||stats.gov.cn^
@@ -9337,7 +9295,6 @@
 @@||stats.statbroadcast.com^
 @@||stats.uptimerobot.com^
 @@||stats.wnba.com^
-@@||stats.wp.com^
 @@||statsig.com^
 @@||status.deepseek.com^
 @@||statusapi.micloud.xiaomi.net^
@@ -9846,7 +9803,6 @@
 @@||tienganhedu.com^
 @@||tiengnhatpro.net^
 @@||tii.la^
-@@||tiktok.com^
 @@||tiktokcdn.com^
 @@||tiktokv.com^
 @@||tildacdn.com^
@@ -10185,7 +10141,6 @@
 @@||twitch.tv^
 @@||twitchadvertising.tv^
 @@||twitchcdn.net^
-@@||twitter.com^
 @@||twittrend.jp^
 @@||two.re^
 @@||twowheeler.policybazaar.com^
@@ -10952,7 +10907,6 @@
 @@||worthitorwoke.com^
 @@||wouterplanet.com^
 @@||wowclassicbis.com^
-@@||wp.com^
 @@||wp.pl^
 @@||wp.youtube-anime.com^
 @@||wpb.shueisha.co.jp^
@@ -11342,12 +11296,10 @@
 @@||yahoo.adclixx.net^
 @@||yahoo.adtrackers.net^
 @@||yahoo.bannertrack.net^
-@@||yahoo.com^
 @@||yalla-shoot-tv.io^
 @@||yams.akamaized.net^
 @@||yande.re^
 @@||yandex.com^
-@@||yandex.ru^
 @@||yandex.st^
 @@||yangkeduo.com^
 @@||yannik.biz^
@@ -11419,7 +11371,6 @@
 @@||yoursavegames.com^
 @@||youtu.be^
 @@||youtube-nocookie.com^
-@@||youtube.com^
 @@||youtube.googleapis.com^
 @@||youtubei.googleapis.com^
 @@||yoututosjeff.es^
