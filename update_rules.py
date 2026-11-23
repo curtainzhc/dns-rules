@@ -46,6 +46,44 @@ LITE_VALUE = {
 }
 LITE_EXCLUDE = {"23"}  # 赌博成人——日常用不上，精简版直接剔除
 
+# 白名单里的广告/统计类顶级父域必须剔除：
+# 这类父域会把旗下所有广告子域(google-analytics/doubleclick/facebook pixel 等)
+# 一并放行，导致 AdGuard Home 实测大量广告漏拦。具体子域白名单仍保留，防误杀。
+ALLOW_BAD_ROOTS = {
+    "2o7.net","googlesyndication.com","googleadservices.com","doubleclick.net","google.com",
+    "facebook.com","ads-twitter.com","twitter.com","linkedin.com","pinterest.com","reddit.com",
+    "redditmedia.com","youtube.com","tiktok.com","yahoo.com","yandex.ru","hotjar.com","bugsnag.com",
+    "amazonaws.com","apple.com","icloud.com","mzstatic.com","samsung.com","miui.com","wp.com",
+    # 这几个虽是精确条目而非父域，但同属主流统计/追踪，放行会让测试与实测漏拦
+    "google-analytics.com","ssl.google-analytics.com","metrics.icloud.com","metrics.mzstatic.com",
+}
+
+# 精简版必保：主流广告/统计/追踪域（测试站与实测高频命中），价值级 0 排最前
+LITE_MUST = {
+    "google-analytics.com","ssl.google-analytics.com","analytics.google.com",
+    "adservice.google.com","pagead2.googlesyndication.com","pagead2.googleadservices.com",
+    "afs.googlesyndication.com","stats.g.doubleclick.net","ad.doubleclick.net",
+    "static.doubleclick.net","m.doubleclick.net","mediavisor.doubleclick.net",
+    "pixel.facebook.com","an.facebook.com","ads-api.twitter.com","static.ads-twitter.com",
+    "ads.linkedin.com","ads.pinterest.com","log.pinterest.com","trk.pinterest.com",
+    "ads.youtube.com","events.reddit.com","events.redditmedia.com",
+    "ads.tiktok.com","analytics.tiktok.com","ads-api.tiktok.com","analytics-sg.tiktok.com",
+    "bat.bing.com","stats.wp.com","analytics.yahoo.com","geo.yahoo.com","udcm.yahoo.com",
+    "adm.hotjar.com","script.hotjar.com","notify.bugsnag.com","api.bugsnag.com",
+    "adtago.s3.amazonaws.com","analytics.s3.amazonaws.com","analyticsengine.s3.amazonaws.com",
+    "advice-ads.s3.amazonaws.com","metrics.icloud.com","metrics.mzstatic.com",
+    "smetrics.samsung.com","nmetrics.samsung.com","gemini.yahoo.com",
+}
+
+# 白名单里这些主流广告/统计子域条目同样是误放行，一并剔除（与 LITE_MUST 对齐）
+ALLOW_BAD_ROOTS |= LITE_MUST
+ALLOW_BAD_ROOTS |= {
+    "s3.amazonaws.com","analyticsengine.s3.amazonaws.com","advice-ads.s3.amazonaws.com",
+    "analytics-query.yahoo.com","partnerads.ysm.yahoo.com","log.fc.yahoo.com",
+    "appmetrica.yandex.ru","adfstat.yandex.ru","metrika.yandex.ru","adfox.yandex.ru",
+    "events.reddit.com","ads-sg.tiktok.com","analytics-api.samsung.com",
+}
+
 os.makedirs(RAW, exist_ok=True)
 
 def load_urls():
@@ -172,6 +210,9 @@ def build():
                     d = norm(c)
                     if valid(d): allow_set.add(d)
 
+    # 剔除广告/统计类顶级父域的放行，避免旗下广告子域被整片放过
+    allow_set -= ALLOW_BAD_ROOTS
+
     def has_allowed_parent(d):
         parts = d.split(".")
         for i in range(1, len(parts) - 1):
@@ -259,7 +300,7 @@ def build():
     lite_quota = max(0, LITE_TOTAL - n_allow)
     lite_pool = [kv for kv in final_items
                  if not (src_all.get(kv[0], set()) & LITE_EXCLUDE)]
-    lite_pool.sort(key=lambda kv: LITE_VALUE.get(src_of.get(kv[0]), 3))
+    lite_pool.sort(key=lambda kv: (0 if kv[0] in LITE_MUST else LITE_VALUE.get(src_of.get(kv[0]), 3)))
     lite_items = lite_pool[:lite_quota]
     lite_rules = sorted(v for d, (v, _) in lite_items)
     lite_cat = {}
