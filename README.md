@@ -4,17 +4,22 @@
 
 ## 订阅地址
 
-拦截规则：
+**精简版（60 万条，14MB — 手机推荐）：**
+```
+https://gh-proxy.com/https://raw.githubusercontent.com/curtainzhc/dns-rules/main/data/rules-lite.txt
+```
+
+**全量版（约 328 万条，66MB）：**
 ```
 https://gh-proxy.com/https://raw.githubusercontent.com/curtainzhc/dns-rules/main/data/rules.txt
 ```
 
-放行白名单：
+**放行白名单（两个版本共用，务必一并订阅）：**
 ```
 https://gh-proxy.com/https://raw.githubusercontent.com/curtainzhc/dns-rules/main/data/allow.txt
 ```
 
-> 全量文件约 66MB，超过 jsDelivr 的 20MB 单文件限制，必须走上面的 gh-proxy 加速通道。
+> 全量文件约 66MB，超过 jsDelivr 的 20MB 单文件限制，必须走 gh-proxy 加速通道。手机内存有限时优先用精简版。
 
 ## 自动机制
 
@@ -23,8 +28,9 @@ https://gh-proxy.com/https://raw.githubusercontent.com/curtainzhc/dns-rules/main
 | `.github/workflows/update.yml` | 每 6 小时定时触发，支持手动触发 |
 | `update_rules.py` | 并发拉取全部源 → 格式转换 → 清洗 → 全局去重 → 父域折叠 → 白名单优先 → 输出 |
 | `urls.txt` | 规则源清单，每行 `编号\|名称\|URL`；新增源自动纳入，无需改脚本 |
-| `data/rules.txt` | 合并后的拦截规则（产物） |
-| `data/allow.txt` | 放行白名单（产物） |
+| `data/rules.txt` | 全量拦截规则（产物） |
+| `data/rules-lite.txt` | 精简版 60 万条（产物） |
+| `data/allow.txt` | 放行白名单（产物，两版共用） |
 | `data/meta.json` | 更新时间、条数、各源贡献、类别分布 |
 
 ## 处理规则
@@ -32,8 +38,10 @@ https://gh-proxy.com/https://raw.githubusercontent.com/curtainzhc/dns-rules/main
 - 只保留 DNS 层可用的纯域名规则（`||域名^` / `0.0.0.0 域名`）
 - 剔除元素隐藏、`$` 修饰符、URL 路径等网页层规则
 - 跨源全局去重、父域折叠、白名单优先剔除冲突拦截
-- 不裁剪条数，输出全量
+- 全量不裁剪；精简版按源优先级取前 60 万条（设备原生/国内广告/威胁情报优先）
 
 ## 当前构成
 
-约 328 万条：威胁情报约 201 万、赌博/成人约 51 万、综合 hosts 约 39 万、国内广告约 30 万、防绕路约 1.4 万、其他；白名单约 1.2 万。
+全量约 328 万条：威胁情报约 201 万、赌博/成人约 51 万、综合 hosts 约 39 万、国内广告约 30 万、防绕路约 1.4 万、其他；白名单约 1.2 万。
+
+精简版 60 万条：国内广告约 26 万、威胁情报约 32 万、设备原生广告/隐私追踪/动态 DNS 等约 1.8 万；与全量共用同一份白名单。
