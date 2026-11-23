@@ -6,7 +6,7 @@
 
 ## 订阅地址
 
-**精简版（拦截 + 白名单合计精确 50 万条，拦截 48.8 万 + 白名单 1.2 万；约 11MB — 推荐）：**
+**精简版（纯拦截精确 50 万条，不含白名单；约 11MB — 推荐）：**
 ```
 https://gh-proxy.com/https://raw.githubusercontent.com/curtainzhc/dns-rules/main/data/rules-lite.txt
 ```
@@ -17,7 +17,7 @@ https://github.com/curtainzhc/dns-rules/releases/download/full-rules/rules.txt
 ```
 > 全量文件 256MB，超过 GitHub 单文件 100MB 限制，故不放仓库、改由 Actions 自动上传到 `full-rules` Release。
 
-**放行白名单（两个版本共用，务必一并订阅）：**
+**放行白名单（仅全量版可选订阅；精简版为纯拦截、无需白名单）：**
 ```
 https://gh-proxy.com/https://raw.githubusercontent.com/curtainzhc/dns-rules/main/data/allow.txt
 ```
@@ -32,8 +32,8 @@ https://gh-proxy.com/https://raw.githubusercontent.com/curtainzhc/dns-rules/main
 | `update_rules.py` | 并发拉取全部源 → 格式转换 → 清洗 → 全局去重 → 父域折叠 → 白名单优先 → 输出 |
 | `urls.txt` | 规则源清单，每行 `编号\|名称\|URL`；新增源自动纳入，无需改脚本 |
 | `data/rules.txt` | 全量拦截规则（产物，256MB，上传到 Release 不入库） |
-| `data/rules-lite.txt` | 精简版 50 万条（产物） |
-| `data/allow.txt` | 放行白名单（产物，两版共用） |
+| `data/rules-lite.txt` | 精简版纯拦截 50 万条（产物，不含白名单） |
+| `data/allow.txt` | 放行白名单（产物，仅全量版可选） |
 | `data/meta.json` | 更新时间、条数、各源贡献、类别分布 |
 
 ## 处理规则
@@ -41,23 +41,23 @@ https://gh-proxy.com/https://raw.githubusercontent.com/curtainzhc/dns-rules/main
 - 只保留 DNS 层可用的纯域名规则（`||域名^` / `0.0.0.0 域名`）
 - 剔除元素隐藏、`$` 修饰符、URL 路径等网页层规则
 - 跨源全局去重、父域折叠、白名单优先剔除冲突拦截
-- 白名单剔除了广告/统计类父域（google/doubleclick/facebook/tiktok/yahoo 等）的误放行，避免主流广告被整片放过；具体子域白名单仍保留防误杀
+- 白名单剔除了广告/统计类父域（google/doubleclick/facebook/tiktok/yahoo 及 qq/weixin/baidu/jd/taobao/bytedance 等大厂）的误放行，避免旗下广告子域被整片放过；具体业务子域白名单仍保留防误杀
 - dnshosts-all 源混入了 55 个公共 DNS 服务器地址（DNS 分流配置残留），转换时已剔除，避免误拦公共 DNS
-- 全量不裁剪；精简版按价值精选取前 50 万条（设备原生/国内广告/威胁情报优先）
+- 全量不裁剪；精简版从全量里按「重要性/有用性」排序，挑最有用的 50 万条
 
 ## 当前构成
 
-全量约 328 万条：威胁情报约 201 万、赌博/成人约 51 万、综合 hosts 约 39 万、国内广告约 30 万、防绕路约 1.4 万、其他；白名单约 1.2 万。
+全量约 1147 万条：综合 hosts 约 862 万、威胁情报约 201 万、赌博/成人约 51 万、国内广告约 30 万、防绕路约 1.5 万、其他；白名单约 1.2 万。
 
-精简版合计精确 50 万条 = 拦截 48.8 万 + 白名单 1.2 万（白名单完整保留，拦截数自动补齐）。AdGuard Home 合并去重后显示约 49.96 万条，属正常现象。
+精简版为纯拦截精确 50 万条，**不含白名单**。AdGuard Home 合并去重后显示略低于 50 万，属正常现象。
 
-**精简版不是机械截断，而是按「日常能用上」的价值精选：**
-- 完整保留：国内广告 ~30 万、设备原生广告、隐私追踪、钓鱼/诈骗/恶意托管/防 DoH 绕路（新加的安全源全部纳入）
-- 补充保留：威胁情报 TIF ~18 万
-- **剔除：赌博/成人（日常用不上）**——只要域名出现在赌博源就剔除，即使它也被其他源收录
-- 白名单 1.2 万条完整保留（防误杀，不动）
+**精简版从全量里按「重要性」挑最有用的 50 万条，类别只作标注、不按比例分配：**
+- 置顶：主流 App 广告 / 统计 / 追踪必保域（酷安、微信、抖音、google-analytics、doubleclick 等旗下广告域）
+- 价值1 全纳入：国内广告 30.4 万、设备原生广告、国际广告/隐私、隐私追踪、动态 DNS/威胁
+- 价值2/3 补足：威胁情报 TIF ~15.3 万，把 50 万填满
+- 赌博/成人价值最低排最后，挤不进 50 万；白名单不纳入精简版（全量版如需放行可单独订阅 `allow.txt`）
 
-全量版则不做任何剔除与精选，保留全部规则。
+全量版则不做任何剔除与精选，保留全部规则（就是各类别合并成的统一大池）。
 
 ## 规则来源与致谢
 
