@@ -9,6 +9,7 @@ RAW = os.path.join(BASE, "data", "raw")
 DATA = os.path.join(BASE, "data")
 TARGET = None          # None = 不裁剪，输出全部去重规则
 BUILD_TO = None
+LITE_TARGET = 600000   # 精简版条数（按源优先级取前 N 条）
 SKIP_NUMS = {"15"}       # gitcode WAF 拦截页
 SPECIAL_NUMS = {"18"}    # 斜杠分隔聚合格式
 
@@ -209,6 +210,13 @@ def build():
     for d, (v, c) in final_items:
         cat_count[c] = cat_count.get(c, 0) + 1
 
+    # 精简版：按 ORDER 优先级（cand 插入顺序）取前 LITE_TARGET 条
+    lite_items = final_items[:LITE_TARGET]
+    lite_rules = sorted(v for d, (v, _) in lite_items)
+    lite_cat = {}
+    for d, (v, c) in lite_items:
+        lite_cat[c] = lite_cat.get(c, 0) + 1
+
     ts = time.strftime("%Y-%m-%d %H:%M:%S UTC", time.gmtime())
     rule_text = (f"! 自动更新订阅规则 | 更新于 {ts}\n"
                  f"! 共 {len(final_rules):,} 条 | 源项目合并去重裁剪\n"
@@ -218,9 +226,14 @@ def build():
                   + "=" * 60 + "\n\n"
                   + "\n".join(f"@@||{d}^" for d in sorted(allow_set)) + "\n"
                   + "\n".join(sorted(allow_wild)) + "\n")
+    lite_text = (f"! 精简版订阅规则 | 更新于 {ts}\n"
+                 f"! 共 {len(lite_rules):,} 条 | 高价值优先 | 与全量共用白名单\n"
+                 + "=" * 60 + "\n\n" + "\n".join(lite_rules) + "\n")
     atomic_write(os.path.join(DATA, "rules.txt"), rule_text)
+    atomic_write(os.path.join(DATA, "rules-lite.txt"), lite_text)
     atomic_write(os.path.join(DATA, "allow.txt"), allow_text)
     meta = {"updated_at": ts, "updated_ts": int(time.time()), "total": len(final_rules),
+            "lite_total": len(lite_rules), "lite_cat": lite_cat,
             "allow": len(allow_set) + len(allow_wild), "removed_sub": removed,
             "cat": cat_count, "per_src": per_src}
     atomic_write(os.path.join(DATA, "meta.json"), json.dumps(meta, ensure_ascii=False, indent=2))
