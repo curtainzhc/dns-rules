@@ -1,4 +1,4 @@
-! 精简版订阅规则 | 更新于 2026-11-23 10:19:09 UTC
+! 精简版订阅规则 | 更新于 2026-11-23 10:32:07 UTC
 ! 拦截 488,372 + 白名单 12,028 = 合计 500,400 条 | 高价值优先
 ============================================================
 
@@ -217,7 +217,6 @@
 0.0.0.0 adfilter.net
 0.0.0.0 adfit.kakao.com
 0.0.0.0 adfuture.cn
-0.0.0.0 adguard-dns.com
 0.0.0.0 adguard-vpn.com
 0.0.0.0 adguard-vpn.online
 0.0.0.0 adguard.io
@@ -1048,14 +1047,7 @@
 0.0.0.0 dn.oneway.mobi
 0.0.0.0 dns-free.link
 0.0.0.0 dns.flatuslifir.is
-0.0.0.0 dns.google
-0.0.0.0 dns.google.com
-0.0.0.0 dns.nextdns.io
-0.0.0.0 dns.sb
-0.0.0.0 dns.twnic.tw
 0.0.0.0 dns0.eu
-0.0.0.0 dns11.quad9.net
-0.0.0.0 dns12.quad9.net
 0.0.0.0 dns4me.net
 0.0.0.0 dnscry.pt
 0.0.0.0 dnscrypt.ca
@@ -2224,7 +2216,6 @@
 0.0.0.0 open.toutiao.com
 0.0.0.0 openapi.mysteel.com
 0.0.0.0 openbld.net
-0.0.0.0 opendns.com
 0.0.0.0 opengw.net
 0.0.0.0 opt.ximad.com
 0.0.0.0 optimus-ads-ykx.amap.com
@@ -2232,7 +2223,6 @@
 0.0.0.0 optimus.ipinyou.com
 0.0.0.0 optout.crsspxl.com
 0.0.0.0 orangebank.mailerpage.io
-0.0.0.0 ordns.he.net
 0.0.0.0 orgfree.com
 0.0.0.0 ort-stsdk.vivo.com.cn
 0.0.0.0 ort.stsdk.vivo.com.cn
@@ -38199,6 +38189,7 @@
 ||adgtracker.com^
 ||adguanggao.eee114.com^
 ||adguard-acros.duckdns.org^
+||adguard-dns.com^
 ||adguard-dns.eu.org^
 ||adguard-home.de^
 ||adguard-home.myddns.me^
@@ -139433,6 +139424,8 @@
 ||dns.gnb09.id^
 ||dns.goertz.digital^
 ||dns.goldplate.org^
+||dns.google.com^
+||dns.google^
 ||dns.goshawk22.uk^
 ||dns.graybox-dev.ru^
 ||dns.griffioen.me^
@@ -139698,6 +139691,7 @@
 ||dns.netrve.net^
 ||dns.netvpn.net^
 ||dns.neubsi.at^
+||dns.nextdns.io^
 ||dns.nguyendn.com^
 ||dns.nhtsky.com^
 ||dns.nic.in^
@@ -139827,6 +139821,7 @@
 ||dns.sarilouis.com^
 ||dns.sark.dev^
 ||dns.sauvette.de^
+||dns.sb^
 ||dns.scapetical.com^
 ||dns.scarx.net^
 ||dns.scayn.com^
@@ -139937,6 +139932,7 @@
 ||dns.trust404.win^
 ||dns.tryk.app^
 ||dns.tuankhaiit.com^
+||dns.twnic.tw^
 ||dns.txq.life^
 ||dns.ulearning.ru^
 ||dns.umbrella.com^
@@ -140082,6 +140078,8 @@
 ||dns1.us^
 ||dns1.wyss.network^
 ||dns10.quad9.net^
+||dns11.quad9.net^
+||dns12.quad9.net^
 ||dns13.quad9.net^
 ||dns19.854000.xyz^
 ||dns2.afastserver.com^
@@ -301154,6 +301152,7 @@
 ||opencode.188174.xyz^
 ||opencollective.com^
 ||opendatastats.net^
+||opendns.com^
 ||opendns.one^
 ||opendoh.com^
 ||opendownload.de^
@@ -302173,6 +302172,7 @@
 ||ordinessteeper.cyou^
 ||ordmrsgobxeoc.website^
 ||ordnphzsfcx.com^
+||ordns.he.net^
 ||ordomusodoover.qpon^
 ||ordos.cc.cd^
 ||ordpmx.victorianplumbing.co.uk^

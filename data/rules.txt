@@ -1,5 +1,5 @@
-! 自动更新订阅规则 | 更新于 2026-11-23 10:19:09 UTC
-! 共 3,285,426 条 | 源项目合并去重裁剪
+! 自动更新订阅规则 | 更新于 2026-11-23 10:32:07 UTC
+! 共 3,285,408 条 | 源项目合并去重裁剪
 ============================================================
 
 0.0.0.0 0-000.store
@@ -16168,8 +16168,6 @@
 0.0.0.0 adgrup.com
 0.0.0.0 adgsdchh.xyz
 0.0.0.0 adgtrk.com
-0.0.0.0 adguard-dns.com
-0.0.0.0 adguard-dns.io
 0.0.0.0 adguard-mail.com
 0.0.0.0 adguard-vpn.com
 0.0.0.0 adguard-vpn.online
@@ -32819,7 +32817,6 @@
 0.0.0.0 anybunny.mobi
 0.0.0.0 anybunny.org
 0.0.0.0 anybunny.tv
-0.0.0.0 anycast.dns.nextdns.io
 0.0.0.0 anyclip.com
 0.0.0.0 anycracks.com
 0.0.0.0 anyd1esk.com
@@ -102486,18 +102483,12 @@
 0.0.0.0 dns.cyberwar.nl
 0.0.0.0 dns.exploitresearch.art
 0.0.0.0 dns.flatuslifir.is
-0.0.0.0 dns.google
-0.0.0.0 dns.google.com
 0.0.0.0 dns.hahdyman.com
 0.0.0.0 dns.lc.wix.com
-0.0.0.0 dns.nextdns.io
-0.0.0.0 dns.opendns.com
 0.0.0.0 dns.qianxin.com.dsa.dnsv1.com
 0.0.0.0 dns.rubyfish.cn
-0.0.0.0 dns.sb
 0.0.0.0 dns.spc-networks.com
 0.0.0.0 dns.steasteel.net
-0.0.0.0 dns.twnic.tw
 0.0.0.0 dns.undpus.com
 0.0.0.0 dns0.eu
 0.0.0.0 dns01.btnibbler.com
@@ -102507,8 +102498,6 @@
 0.0.0.0 dns1.alestra.net.mx
 0.0.0.0 dns1.mikymaus.in
 0.0.0.0 dns1.utcsystemtime.com
-0.0.0.0 dns11.quad9.net
-0.0.0.0 dns12.quad9.net
 0.0.0.0 dns2.alestra.net.mx
 0.0.0.0 dns2.eguard.net
 0.0.0.0 dns2.googlesource.com
@@ -102519,7 +102508,6 @@
 0.0.0.0 dns3.cf
 0.0.0.0 dns4me.net
 0.0.0.0 dns6.skype-dns.akadns.net
-0.0.0.0 dns64.dns.google
 0.0.0.0 dns9.auth-mail.ru
 0.0.0.0 dnsbkss.club
 0.0.0.0 dnsbunker.org
@@ -103267,9 +103255,7 @@
 0.0.0.0 doh.centraleu.pi-dns.com
 0.0.0.0 doh.defaultroutes.de
 0.0.0.0 doh.li
-0.0.0.0 doh.opendns.com
 0.0.0.0 doh.sb
-0.0.0.0 doh3.dns.nextdns.io
 0.0.0.0 dohafw.com
 0.0.0.0 dohanbonus.com
 0.0.0.0 dohenycompanies.com
@@ -127512,7 +127498,6 @@
 0.0.0.0 firefox-portal-detection.com
 0.0.0.0 firefox-search.xyz
 0.0.0.0 firefox.com
-0.0.0.0 firefox.dns.nextdns.io
 0.0.0.0 firefox.heapack.com
 0.0.0.0 firefox.hu
 0.0.0.0 firefox.servehttps.com
@@ -241510,7 +241495,6 @@
 0.0.0.0 nextdigital.com.hk
 0.0.0.0 nextdigital.com.tw
 0.0.0.0 nextdigitalday.ru
-0.0.0.0 nextdns.io
 0.0.0.0 nextdont.com
 0.0.0.0 nextdoor.com
 0.0.0.0 nextdoorbuddies.com
@@ -245689,7 +245673,6 @@
 0.0.0.0 ns1.njzjamc.cloud
 0.0.0.0 ns1.nsdomainservices.org
 0.0.0.0 ns1.nulled-db.com
-0.0.0.0 ns1.opendns.ca
 0.0.0.0 ns1.ossqianxin.co
 0.0.0.0 ns1.player1253.com
 0.0.0.0 ns1.press
@@ -245717,7 +245700,6 @@
 0.0.0.0 ns1.wzq.at
 0.0.0.0 ns1.xionoll.com
 0.0.0.0 ns1.xync.org
-0.0.0.0 ns1.zdns.google
 0.0.0.0 ns1631261.com
 0.0.0.0 ns1631262.info
 0.0.0.0 ns1dns1.flonetwork.com
@@ -245779,7 +245761,6 @@
 0.0.0.0 ns2.surf-town.net
 0.0.0.0 ns2.wqj.at
 0.0.0.0 ns2.wzq.at
-0.0.0.0 ns2.zdns.google
 0.0.0.0 ns3.007work.icu
 0.0.0.0 ns3.ace3.ru
 0.0.0.0 ns3.aliyunapis.com
@@ -245814,7 +245795,6 @@
 0.0.0.0 ns3.surf-town.net
 0.0.0.0 ns3.wqj.at
 0.0.0.0 ns3.wzq.at
-0.0.0.0 ns3.zdns.google
 0.0.0.0 ns3100751.ip-54-36-175.eu
 0.0.0.0 ns341617.ovh.net
 0.0.0.0 ns35.bigboxhr.com
@@ -245842,7 +245822,6 @@
 0.0.0.0 ns4.stripcdn.com
 0.0.0.0 ns4.wqj.at
 0.0.0.0 ns4.wzq.at
-0.0.0.0 ns4.zdns.google
 0.0.0.0 ns45ehx5swz.com
 0.0.0.0 ns4w.org
 0.0.0.0 ns5.biz
@@ -255058,9 +255037,6 @@
 0.0.0.0 opendharma.org
 0.0.0.0 opendigital.ru
 0.0.0.0 opendn.xyz
-0.0.0.0 opendns.be
-0.0.0.0 opendns.ca
-0.0.0.0 opendns.com
 0.0.0.0 opendoor.com
 0.0.0.0 opendoorerp.com
 0.0.0.0 opendoors.de
@@ -256238,7 +256214,6 @@
 0.0.0.0 ordingly.com
 0.0.0.0 ordisposableado.com
 0.0.0.0 ordite.com
-0.0.0.0 ordns.he.net
 0.0.0.0 ordofsance.com
 0.0.0.0 ordolava.com
 0.0.0.0 ordr112.pw
@@ -281711,7 +281686,6 @@
 0.0.0.0 quad-passion.zannuaire.com
 0.0.0.0 quad-registry-cleaner.softonic.fr
 0.0.0.0 quad.com
-0.0.0.0 quad9.net
 0.0.0.0 quadairdroneshop.net
 0.0.0.0 quadency.com
 0.0.0.0 quadhu.com
@@ -350301,7 +350275,6 @@
 0.0.0.0 unfe.org
 0.0.0.0 unfi.com
 0.0.0.0 unfieryneutral.com
-0.0.0.0 unfiltered.adguard-dns.com
 0.0.0.0 unfiltered.news
 0.0.0.0 unfinibeats.com
 0.0.0.0 unfinishedheir.com
@@ -389565,7 +389538,6 @@
 0.0.0.0 zdnet.com.tw
 0.0.0.0 zdnet.de
 0.0.0.0 zdnet.redvideo.io
-0.0.0.0 zdns.google
 0.0.0.0 zdobyj-nagrode.com
 0.0.0.0 zdoom.org
 0.0.0.0 zdorovie-nogi.info
@@ -682334,6 +682306,7 @@
 ||adgtracker.com^
 ||adguanggao.eee114.com^
 ||adguard-acros.duckdns.org^
+||adguard-dns.com^
 ||adguard-dns.eu.org^
 ||adguard-home.de^
 ||adguard-home.myddns.me^
@@ -1316903,6 +1316876,8 @@
 ||dns.gnb09.id^
 ||dns.goertz.digital^
 ||dns.goldplate.org^
+||dns.google.com^
+||dns.google^
 ||dns.goshawk22.uk^
 ||dns.graybox-dev.ru^
 ||dns.griffioen.me^
@@ -1317173,6 +1317148,7 @@
 ||dns.netrve.net^
 ||dns.netvpn.net^
 ||dns.neubsi.at^
+||dns.nextdns.io^
 ||dns.nguyendn.com^
 ||dns.nhtsky.com^
 ||dns.nic.in^
@@ -1317302,6 +1317278,7 @@
 ||dns.sarilouis.com^
 ||dns.sark.dev^
 ||dns.sauvette.de^
+||dns.sb^
 ||dns.scapetical.com^
 ||dns.scarx.net^
 ||dns.scayn.com^
@@ -1317416,6 +1317393,7 @@
 ||dns.tryk.app^
 ||dns.tuankhaiit.com^
 ||dns.turtlecoin.lol^
+||dns.twnic.tw^
 ||dns.txq.life^
 ||dns.ulearning.ru^
 ||dns.umbrella.com^
@@ -1317570,6 +1317548,8 @@
 ||dns1.us^
 ||dns1.wyss.network^
 ||dns10.quad9.net^
+||dns11.quad9.net^
+||dns12.quad9.net^
 ||dns122.shop^
 ||dns13.quad9.net^
 ||dns176136.phdns3.es^
@@ -2299515,6 +2299495,7 @@
 ||opendiscussionlab.forum^
 ||openditosxx.easy.co^
 ||opendlonline.live^
+||opendns.com^
 ||opendns.info^
 ||opendns.one^
 ||opendnsapi.net^
@@ -2306870,6 +2306851,7 @@
 ||ordnerdienste-ms.de^
 ||ordnf.com^
 ||ordnphzsfcx.com^
+||ordns.he.net^
 ||ordo-claims.com^
 ||ordo-lux.com^
 ||ordo-lux.org^
