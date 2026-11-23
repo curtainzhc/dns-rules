@@ -153,22 +153,43 @@ def fetch_all():
             print(f"  [{r[0]}] {tag} {r[2]}", flush=True)
     return sorted(results), items
 
+# dnshosts-all 是 AdGuard Home 的 DNS 分流配置，域名块里混入了公共 DNS 服务器地址
+# （tls://dns.google:853、https://dns.nextdns.io/dns-query 等被斜杠切碎后的 hostname）。
+# 这些不是广告域名，拦截它们会导致公共 DNS 解析失败，必须剔除。
+DNS_SERVER_HOSTS = {
+    "dns.google","dns.google.com","1dot1dot1dot1.cloudflare-dns.com","chrome.cloudflare-dns.com",
+    "edge.nextdns.io","dns.nextdns.io","anycast.dns.nextdns.io","doh3.dns.nextdns.io",
+    "firefox.dns.nextdns.io","dns1.nextdns.io","dns2.nextdns.io","steering.nextdns.io","nextdns.io",
+    "dns-unfiltered.adguard.com","unfiltered.adguard-dns.com","adguard-dns.com","dns.adguard.com",
+    "dns12.quad9.net","alpha-dns.quad9.net","dns.quad9.net","doh.opendns.com","ordns.he.net",
+    "dns.twnic.tw","common.dot.dns.yandex.net","dns.mullvad.net","doh.dns.sb","dns.sb",
+}
+# 兜底：这些后缀/关键词基本可判定为公共 DNS 服务端，而非广告域名
+DNS_SERVER_PAT = re.compile(r'(cloudflare-dns|nextdns|adguard-dns|quad9|opendns|dns\.google|dns\.twnic|dns\.mullvad|dot\.dns\.yandex)')
+
+def is_dns_server(d):
+    return d in DNS_SERVER_HOSTS or bool(DNS_SERVER_PAT.search(d))
+
 def convert_special(num, name):
     path = os.path.join(RAW, f"{num}_{name}.txt")
     if not os.path.exists(path):
         return 0
     s = open(path, encoding="utf-8", errors="ignore").read()
     pat = re.compile(r'^[0-9a-zA-Z]([0-9a-zA-Z\-._]*[0-9a-zA-Z])?$')
-    seen, out = set(), []
+    seen, out, dropped = set(), [], 0
     for x in s.split("/"):
         d = x.strip().lower().rstrip(".")
         if "." in d and " " not in d and ":" not in d and "[" not in d and "]" not in d and pat.match(d):
+            if is_dns_server(d):
+                dropped += 1
+                continue
             if d not in seen:
                 seen.add(d); out.append(f"0.0.0.0 {d}")
     if not out:
         return 0   # 转换结果为空时不覆盖缓存，避免下载异常导致该源永久失效
     with open(path, "w", encoding="utf-8") as f:
         f.write("\n".join(out) + "\n")
+    print(f"    [{num}] 剔除 {dropped} 个公共DNS服务器地址", flush=True)
     return len(out)
 
 re_hosts = re.compile(r'^(?:0\.0\.0\.0|127\.0\.0\.1|::1?)\s+(.+)$', re.I)
