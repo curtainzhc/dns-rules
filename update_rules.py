@@ -27,6 +27,25 @@ ORDER = ["24","25","26","27","28","29","30","31","32","33","34","22",
          "05","12","13","11","14","16","08","09","17","03","10","06","01",
          "21","19","04","20","23","18"]
 
+# ===== 精简版价值分级（数字越小越优先保留）=====
+# 1 = 日常必用：国内广告 / 设备原生广告 / 主流隐私
+# 2 = 安全刚需：钓鱼 / 诈骗 / 恶意托管 / 防DoH绕路 / 动态DNS威胁
+# 3 = 补充拦截：威胁情报TIF / 国际广告隐私 / 综合hosts
+# 99 = 日常用不上：赌博成人 / 冷门聚合 —— 精简版剔除
+LITE_VALUE = {
+    # 1 国内广告 + 设备原生 + 主流隐私
+    "01":1,"03":1,"04":1,"05":1,"06":1,"09":1,"11":1,"12":1,"13":1,"14":1,
+    "16":1,"17":1,"19":1,"24":1,"25":1,"26":1,"27":1,"28":1,"29":1,"30":1,
+    "31":1,"32":1,"33":1,"34":1,"10":1,
+    # 2 安全刚需（含新加的钓鱼/Fake/Hoster/DoH绕过）
+    "37":2,"39":2,"40":2,"35":2,"20":2,"22":2,
+    # 3 补充
+    "21":3,"08":3,"36":3,"38":3,"18":3,
+    # 99 精简版剔除
+    "23":99,
+}
+LITE_EXCLUDE = {"23"}  # 赌博成人——日常用不上，精简版直接剔除
+
 os.makedirs(RAW, exist_ok=True)
 
 def load_urls():
@@ -149,13 +168,23 @@ def build():
                 return True
         return False
 
-    cand = {}
+    cand = {}          # d -> (outfmt, cat)
+    src_of = {}        # d -> 价值最优的源编号（精简版按此排价值）
+    src_all = {}       # d -> 收录过它的所有源编号集合（精简版用于剔除用不上的源）
     per_src = {}
-    def add(d, outfmt, cat):
+    def add(d, outfmt, cat, num):
+        # 记录所有收录该域名的源（含重复），用于精简版剔除逻辑
+        src_all.setdefault(d, set()).add(num)
         if d in cand or d in allow_set or has_allowed_parent(d):
             return False
         cand[d] = (outfmt, cat)
+        src_of[d] = num
         return True
+    def refresh_src_of():
+        # 每个域名取「收录它的源里价值最优(数字最小)」的那个，供精简版排序
+        for d, nums in src_all.items():
+            if d in cand:
+                src_of[d] = min(nums, key=lambda n: LITE_VALUE.get(n, 3))
 
     for num in ORDER + [n for n in sorted(items) if n not in ORDER and n not in SKIP_NUMS]:
         if num in SKIP_NUMS or num not in items:
@@ -181,18 +210,20 @@ def build():
                         d = norm(raw_d)
                         if d in SKIP_DOM or not valid(d):
                             continue
-                        if add(d, f"0.0.0.0 {d}", cat): added += 1
+                        if add(d, f"0.0.0.0 {d}", cat, num): added += 1
                     continue
                 if body.startswith("||"):
                     core = body[2:]
                     if "$" in core or "/" in core or "*" in core:
                         continue
                     d = norm(core.split("^")[0].split("$")[0].split("/")[0])
-                    if valid(d) and add(d, f"||{d}^", cat): added += 1
+                    if valid(d) and add(d, f"||{d}^", cat, num): added += 1
                     continue
                 d = norm(body)
-                if valid(d) and add(d, f"0.0.0.0 {d}", cat): added += 1
+                if valid(d) and add(d, f"0.0.0.0 {d}", cat, num): added += 1
         per_src[num] = added
+
+    refresh_src_of()   # 重算每个域名的最优价值来源
 
     net_domains = {d for d, (v, _) in cand.items() if v.startswith("||")}
     removed = 0
@@ -210,10 +241,15 @@ def build():
     for d, (v, c) in final_items:
         cat_count[c] = cat_count.get(c, 0) + 1
 
-    # 精简版：拦截 + 白名单合计 LITE_TOTAL 条。拦截按源优先级取前 N 条，N = 总量 - 白名单
+    # 精简版：拦截 + 白名单合计 LITE_TOTAL 条。
+    # 拦截按「日常价值」排序取前 N 条：先剔除用不上的源(赌博成人)，
+    # 再按 LITE_VALUE 分级(1 必用 > 2 安全 > 3 补充)，同级内保持原顺序。
     n_allow = len(allow_set) + len(allow_wild)
     lite_quota = max(0, LITE_TOTAL - n_allow)
-    lite_items = final_items[:lite_quota]
+    lite_pool = [kv for kv in final_items
+                 if not (src_all.get(kv[0], set()) & LITE_EXCLUDE)]
+    lite_pool.sort(key=lambda kv: LITE_VALUE.get(src_of.get(kv[0]), 3))
+    lite_items = lite_pool[:lite_quota]
     lite_rules = sorted(v for d, (v, _) in lite_items)
     lite_cat = {}
     for d, (v, c) in lite_items:
