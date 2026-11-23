@@ -29,22 +29,21 @@
 
 把下面地址里的 `curtainzhc` 和 `dns-rules` 换成你自己的：
 
-**拦截规则（填 App 的「规则订阅 URL」）：**
+**拦截规则（全量 320 万条，用加速通道 — 推荐）：**
 ```
-https://cdn.jsdelivr.net/gh/curtainzhc/dns-rules@main/data/rules.txt
+https://gh-proxy.com/https://raw.githubusercontent.com/curtainzhc/dns-rules/main/data/rules.txt
 ```
 
 **放行白名单（防误杀，一并订阅）：**
 ```
-https://cdn.jsdelivr.net/gh/curtainzhc/dns-rules@main/data/allow.txt
+https://gh-proxy.com/https://raw.githubusercontent.com/curtainzhc/dns-rules/main/data/allow.txt
 ```
 
-jsDelivr 是免费 CDN，国内可直连、自动缓存。`@main` 表示始终取最新版本。如果某次更新后 CDN 没立刻刷新，等几分钟或把 `@main` 换成 `@latest` 再试。
+> ⚠️ 全量规则约 66MB，超过 jsDelivr CDN 的 20MB 限制（CDN 只会返回过期的旧缓存），所以**不能用 jsDelivr**。上面走 gh-proxy 国内加速通道，实测约 1.8MB/s，40 秒可下完。
 
-备用直链（不走 CDN，实时但国内可能较慢）：
+备用直链（境外/无加速需求时，实时但国内很慢）：
 ```
 https://raw.githubusercontent.com/curtainzhc/dns-rules/main/data/rules.txt
-https://raw.githubusercontent.com/curtainzhc/dns-rules/main/data/allow.txt
 ```
 
 ## 三、验证自动更新是否正常
@@ -74,8 +73,4 @@ https://raw.githubusercontent.com/curtainzhc/dns-rules/main/data/allow.txt
 
 清理逻辑：元素隐藏规则、`$` 修饰符、带路径的网页请求规则已剔除（DNS 层用不上）；跨源全局去重、父域折叠、白名单优先剔除冲突拦截。不裁剪条数，输出全部有效规则。
 
-> 注意：全量规则文件约 56MB，超过 jsDelivr CDN 的 20MB 单文件限制。若 CDN 订阅失败，请改用 raw 直链：
-> ```
-> https://raw.githubusercontent.com/curtainzhc/dns-rules/main/data/rules.txt
-> ```
-> 或在 App 中直接用「更新订阅」手动导入。
+> 注意：全量规则文件约 66MB，超过 jsDelivr CDN 的 20MB 单文件限制，必须用上文第二节的 gh-proxy 加速通道订阅，不能用 jsDelivr。
