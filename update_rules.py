@@ -82,6 +82,9 @@ ALLOW_BAD_ROOTS |= {
     "analytics-query.yahoo.com","partnerads.ysm.yahoo.com","log.fc.yahoo.com",
     "appmetrica.yandex.ru","adfstat.yandex.ru","metrika.yandex.ru","adfox.yandex.ru",
     "events.reddit.com","ads-sg.tiktok.com","analytics-api.samsung.com",
+    # 测试站复核发现的误放行：这 4 个父域/精确条目放行了主流广告统计域
+    "g.doubleclick.net","media.net","sentry-cdn.com","112.2o7.net",
+    "static.media.net","browser.sentry-cdn.com",
 }
 
 os.makedirs(RAW, exist_ok=True)
