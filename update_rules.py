@@ -9,7 +9,7 @@ RAW = os.path.join(BASE, "data", "raw")
 DATA = os.path.join(BASE, "data")
 TARGET = None          # None = 不裁剪，输出全部去重规则
 BUILD_TO = None
-LITE_TOTAL = 500000    # 精简版「拦截规则 + 白名单」合计条数（精确 50 万，价值分级优先，赌博剔除）
+LITE_TOTAL = 500000    # 精简版纯拦截条数（精确 50 万，价值分级优先，赌博剔除，不含白名单）
 SKIP_NUMS = {"15"}       # gitcode WAF 拦截页
 SPECIAL_NUMS = {"18"}    # 斜杠分隔聚合格式
 
@@ -87,6 +87,11 @@ ALLOW_BAD_ROOTS |= {
     # 测试站复核发现的误放行：这 4 个父域/精确条目放行了主流广告统计域
     "g.doubleclick.net","media.net","sentry-cdn.com","112.2o7.net",
     "static.media.net","browser.sentry-cdn.com",
+    # 主流大厂父域误放行：白名单源整片放行这些父域，导致旗下所有广告子域
+    # （ad.qq.com / adnet.qq.com / 抖音广告等）被放过。剔除父域放行，
+    # 旗下具体业务子域白名单仍保留，避免误杀正常功能。
+    "qq.com","weixin.qq.com","baidu.com","jd.com","taobao.com",
+    "bytedance.com","sogou.com","163.com","sohu.com",
 }
 
 os.makedirs(RAW, exist_ok=True)
@@ -287,8 +292,10 @@ def build():
     src_mask = {}      # d -> 收录它的源位掩码
     src_of = {}        # d -> 价值最优的源编号（精简版按此排价值）
     LITE_EXCLUDE_MASK = sum(bit(n) for n in LITE_EXCLUDE)
-    # 每个源编号对应的价值，用于 refresh 时按位取最优
-    NUM_VALUE = [(int(n), LITE_VALUE.get(n, 3)) for n in sorted(items)]
+    # 每个源编号对应的价值，用于 refresh 时按位取最优。
+    # 注意 LITE_VALUE 的键是字符串（"01"），src_of 必须存字符串编号，
+    # 否则 LITE_VALUE.get(int, 3) 永远命中不了、全部退回默认值 3，价值排序失效。
+    NUM_VALUE = [(int(n), n, LITE_VALUE.get(n, 3)) for n in sorted(items)]  # (int编号, 字符串编号, 价值)
     per_src = {}
     def add(d, outfmt, cat, num):
         m = bit(num)
@@ -304,9 +311,9 @@ def build():
             if d not in cand:
                 continue
             best, bestv = None, 99
-            for n, v in NUM_VALUE:
-                if (mask >> n) & 1 and v < bestv:
-                    best, bestv = n, v
+            for n_int, n_str, v in NUM_VALUE:
+                if (mask >> n_int) & 1 and v < bestv:
+                    best, bestv = n_str, v   # 存字符串编号，与 LITE_VALUE 键类型一致
                     if bestv == 0:
                         break
             if best is not None:
@@ -375,15 +382,21 @@ def build():
     for d, (v, c) in final_items:
         cat_count[c] = cat_count.get(c, 0) + 1
 
-    # 精简版：拦截 + 白名单合计 LITE_TOTAL 条。
-    # 拦截按「日常价值」排序取前 N 条：先剔除用不上的源(赌博成人)，
-    # 再按 LITE_VALUE 分级(1 必用 > 2 安全 > 3 补充)，同级内保持原顺序。
+    # 精简版：纯拦截 LITE_TOTAL 条（不含白名单）。
+    # 按「类别子池」取，而非按来源价值取：
+    #   广告类(国内/设备原生/国际) + 隐私 + 动态DNS 全部纳入（保证广告都能屏蔽），
+    #   威胁情报补足到 50 万；纯赌博/成人剔除；广告域即使被赌博源收录也保留。
     n_allow = len(allow_set) + len(allow_wild)
-    lite_quota = max(0, LITE_TOTAL - n_allow)
-    lite_pool = [kv for kv in final_items
-                 if not (src_mask.get(kv[0], 0) & LITE_EXCLUDE_MASK)]
-    lite_pool.sort(key=lambda kv: (0 if kv[0] in LITE_MUST else LITE_VALUE.get(src_of.get(kv[0]), 3)))
-    lite_items = lite_pool[:lite_quota]
+    # 精简版：从全量里按「重要性/有用性」挑最有用的 LITE_TOTAL 条。
+    # 类别只作标注区分，不按类别池配额取。
+    # LITE_MUST（酷安/微信/抖音等主流 App 广告、主流统计追踪域）置顶；
+    # 其余按 LITE_VALUE 分级：1 必用（国内广告/设备原生/隐私）> 2 安全 > 3 补充 > 99 赌博成人。
+    # 赌博/成人值 99 排最后，自然挤不进前 50 万；
+    # 不再因一个域出现在赌博源就硬剔除，避免主流广告域被牵连漏拦。
+    lite_items = sorted(
+        final_items,
+        key=lambda kv: (0 if kv[0] in LITE_MUST else LITE_VALUE.get(src_of.get(kv[0]), 3)),
+    )[:LITE_TOTAL]
     lite_rules = sorted(v for d, (v, _) in lite_items)
     lite_cat = {}
     for d, (v, c) in lite_items:
@@ -393,20 +406,20 @@ def build():
     rule_text = (f"! 自动更新订阅规则 | 更新于 {ts}\n"
                  f"! 共 {len(final_rules):,} 条 | 源项目合并去重裁剪\n"
                  + "=" * 60 + "\n\n" + "\n".join(final_rules) + "\n")
-    allow_text = (f"! 放行白名单 | 与拦截规则一并导入，优先级最高\n"
+    allow_text = (f"! 放行白名单 | 全量版可选导入，优先级最高\n"
                   f"! 纯域名 {len(allow_set)} + 通配符 {len(allow_wild)}\n"
                   + "=" * 60 + "\n\n"
                   + "\n".join(f"@@||{d}^" for d in sorted(allow_set)) + "\n"
                   + "\n".join(sorted(allow_wild)) + "\n")
     lite_text = (f"! 精简版订阅规则 | 更新于 {ts}\n"
-                 f"! 拦截 {len(lite_rules):,} + 白名单 {n_allow:,} = 合计 {len(lite_rules)+n_allow:,} 条 | 高价值优先\n"
+                 f"! 纯拦截 {len(lite_rules):,} 条 | 不含白名单 | 高价值优先\n"
                  + "=" * 60 + "\n\n" + "\n".join(lite_rules) + "\n")
     atomic_write(os.path.join(DATA, "rules.txt"), rule_text)
     atomic_write(os.path.join(DATA, "rules-lite.txt"), lite_text)
     atomic_write(os.path.join(DATA, "allow.txt"), allow_text)
     meta = {"updated_at": ts, "updated_ts": int(time.time()), "total": len(final_rules),
-            "lite_total": len(lite_rules), "lite_allow": n_allow,
-            "lite_sum": len(lite_rules) + n_allow, "lite_cat": lite_cat,
+            "lite_total": len(lite_rules), "lite_allow": 0,
+            "lite_sum": len(lite_rules), "lite_cat": lite_cat,
             "allow": len(allow_set) + len(allow_wild), "removed_sub": removed,
             "cat": cat_count, "per_src": per_src}
     atomic_write(os.path.join(DATA, "meta.json"), json.dumps(meta, ensure_ascii=False, indent=2))
