@@ -39,6 +39,7 @@ https://gh-proxy.com/https://raw.githubusercontent.com/curtainzhc/dns-rules/main
 - 剔除元素隐藏、`$` 修饰符、URL 路径等网页层规则
 - 跨源全局去重、父域折叠、白名单优先剔除冲突拦截
 - 白名单剔除了广告/统计类父域（google/doubleclick/facebook/tiktok/yahoo 等）的误放行，避免主流广告被整片放过；具体子域白名单仍保留防误杀
+- dnshosts-all 源混入了 55 个公共 DNS 服务器地址（DNS 分流配置残留），转换时已剔除，避免误拦公共 DNS
 - 全量不裁剪；精简版按价值精选取前 50 万条（设备原生/国内广告/威胁情报优先）
 
 ## 当前构成
