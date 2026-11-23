@@ -11,17 +11,18 @@
 https://gh-proxy.com/https://raw.githubusercontent.com/curtainzhc/dns-rules/main/data/rules-lite.txt
 ```
 
-**全量版（约 328 万条，66MB）：**
+**全量版（约 1147 万条，256MB — 仅供 AdGuard Home，超出 App 50 万上限）：**
 ```
-https://gh-proxy.com/https://raw.githubusercontent.com/curtainzhc/dns-rules/main/data/rules.txt
+https://github.com/curtainzhc/dns-rules/releases/download/full-rules/rules.txt
 ```
+> 全量文件 256MB，超过 GitHub 单文件 100MB 限制，故不放仓库、改由 Actions 自动上传到 `full-rules` Release。
 
 **放行白名单（两个版本共用，务必一并订阅）：**
 ```
 https://gh-proxy.com/https://raw.githubusercontent.com/curtainzhc/dns-rules/main/data/allow.txt
 ```
 
-> 全量文件约 66MB，超过 jsDelivr 的 20MB 单文件限制，必须走 gh-proxy 加速通道。手机内存有限时优先用精简版。
+> 全量文件 256MB 较大，AdGuard Home 加载需一定内存与时间；手机 DNS App 有 50 万条上限，装不下全量，请用精简版。
 
 ## 自动机制
 
@@ -30,7 +31,7 @@ https://gh-proxy.com/https://raw.githubusercontent.com/curtainzhc/dns-rules/main
 | `.github/workflows/update.yml` | 每 6 小时定时触发，支持手动触发 |
 | `update_rules.py` | 并发拉取全部源 → 格式转换 → 清洗 → 全局去重 → 父域折叠 → 白名单优先 → 输出 |
 | `urls.txt` | 规则源清单，每行 `编号\|名称\|URL`；新增源自动纳入，无需改脚本 |
-| `data/rules.txt` | 全量拦截规则（产物） |
+| `data/rules.txt` | 全量拦截规则（产物，256MB，上传到 Release 不入库） |
 | `data/rules-lite.txt` | 精简版 50 万条（产物） |
 | `data/allow.txt` | 放行白名单（产物，两版共用） |
 | `data/meta.json` | 更新时间、条数、各源贡献、类别分布 |
