@@ -80,7 +80,9 @@ https://gh-proxy.com/https://raw.githubusercontent.com/curtainzhc/dns-rules/main
 | HG | 2771936993 | https://github.com/2771936993/HG |
 | SM-AdHosts | 2Gardon | https://github.com/2Gardon/SM-Ad-FuckU-hosts |
 | 666rules | qq5460168 | https://github.com/qq5460168/666 |
+| qy-Ads-Rule（rssv，源站 WAF 拦截，当前未启用） | rssv | https://github.com/rssv/qy-Ads-Rule |
 | dnshosts-all | Potterli20 | https://github.com/Potterli20/file |
+| AdHosts-Pro（trli-Pro，全量最大源） | Potterli20 | https://github.com/Potterli20/file |
 | AdRules | Cats-Team | https://github.com/Cats-Team/AdRules |
 
 ### 隐私追踪
