@@ -1,4 +1,4 @@
-! 精简版订阅规则 | 更新于 2026-11-24 04:17:17 UTC
+! 精简版订阅规则 | 更新于 2026-11-24 08:22:29 UTC
 ! 纯拦截 499,998 条 | 不含白名单 | 高价值优先
 ============================================================
 
@@ -974,6 +974,7 @@
 0.0.0.0 dc.vmoters.com
 0.0.0.0 dco-jads-727222375.us-west-2.elb.amazonaws.com
 0.0.0.0 dd.iaskgo.com
+0.0.0.0 dd.yiche.com
 0.0.0.0 ddfs-public.ddimg.mobi
 0.0.0.0 de-mi-nis-ner.info
 0.0.0.0 de-mi-nis-ner2.info
@@ -1100,6 +1101,7 @@
 0.0.0.0 e.kewro.com
 0.0.0.0 e.nbhaosheng168.com
 0.0.0.0 e.tf.360.cn
+0.0.0.0 e.xroun.com
 0.0.0.0 e.yangjingbang.net
 0.0.0.0 e7free.allyes.com
 0.0.0.0 earthvpn.com
@@ -1735,6 +1737,7 @@
 0.0.0.0 log.umtrack.com
 0.0.0.0 log.vcdn.io
 0.0.0.0 log.videojj.com
+0.0.0.0 log.ycapp.yiche.com
 0.0.0.0 log1wtlogin.qq.com
 0.0.0.0 log3-applog-hl.fqnovel.com
 0.0.0.0 log3-normal.toutiaoapi.com
@@ -1775,6 +1778,7 @@
 0.0.0.0 m.sjzhushou.com
 0.0.0.0 m.wnxcg.com
 0.0.0.0 m.wrating.com
+0.0.0.0 m.yalayi.com
 0.0.0.0 m.yangjingbang.net
 0.0.0.0 m.z74d.com
 0.0.0.0 m.zdjgj.cn
@@ -3535,6 +3539,7 @@
 0.0.0.0 zippyproxy.com
 0.0.0.0 zixuncooperation.html5.qq.com
 0.0.0.0 zjvnet.allyes.com
+0.0.0.0 zls.xz6d.com
 0.0.0.0 zminer.zaloapp.com
 0.0.0.0 zndaowjdnf.stream
 0.0.0.0 zoog.info
@@ -137377,7 +137382,6 @@
 ||dev-lm.d1.trainhub.capio.dev^
 ||dev-loteria-zlotybilet.albedomarketing.net^
 ||dev-lp-subdomain.carnival-uk-dev.test.ajo.adobe.com^
-||dev-metamask-help.codedesign.app^
 ||dev-ngrok.com^
 ||dev-oss-saas.wemew.com^
 ||dev-plan.intel.com^
@@ -200707,7 +200711,6 @@
 ||help-exods-wallet.wasmer.app^
 ||help-l-edg-er-liv-e.typedream.app^
 ||help-medicines.com^
-||help-metamask-login.codedesign.app^
 ||help-metmaskext.gitbook.io^
 ||help-netcoiins-page.square.site^
 ||help-startusladger.gitbook.io^
@@ -238207,7 +238210,6 @@
 ||learn-integers.neo-space.space^
 ||learn-ledgrcom.wixstudio.com^
 ||learn-math.space^
-||learn-ndaxxio-logi.codedesign.app^
 ||learn-on-demand.co.uk^
 ||learn-rabbywallot-cdn-sso.wasmer.app^
 ||learn-started.kb.help^
@@ -238450,7 +238452,6 @@
 ||ledger-apps.co.com^
 ||ledger-com-start-sso-web.typedream.app^
 ||ledger-eng.net^
-||ledger-live--wallet.codedesign.app^
 ||ledger-live-web.io^
 ||ledger-live.bity.com^
 ||ledger-live.cn.com^
@@ -311797,7 +311798,6 @@
 ||pagerschinois.cfd^
 ||pagerstomas.cfd^
 ||pages-bitunixcdn.wixstudio.com^
-||pages-chrome-coinbase-ext.codedesign.app^
 ||pages-confirm.start.page^
 ||pages-fast.m.taobao.com^
 ||pages-manualy-loading-10029479.firebaseapp.com^

@@ -1,11 +1,11 @@
 {
-  "time": "2026-11-24 12:17",
-  "event": "手动",
+  "time": "2026-11-24 16:22",
+  "event": "定时",
   "first": false,
   "total": {
-    "new": 11452783,
-    "old": 11450226,
-    "delta": 2557
+    "new": 11305162,
+    "old": 11452783,
+    "delta": -147621
   },
   "lite": {
     "new": 499998,
@@ -21,72 +21,51 @@
     {
       "num": "41",
       "name": "trli-Pro",
-      "old": 8235583,
-      "new": 8239627,
-      "delta": 4044
+      "old": 8239627,
+      "new": 8091576,
+      "delta": -148051
     },
     {
-      "num": "21",
-      "name": "hagezi-tif",
-      "old": 2138938,
-      "new": 2137272,
-      "delta": -1666
-    },
-    {
-      "num": "23",
-      "name": "hagezi-gambling",
-      "old": 323268,
-      "new": 322658,
-      "delta": -610
-    },
-    {
-      "num": "19",
-      "name": "AdRules-plus",
-      "old": 7869,
-      "new": 8188,
-      "delta": 319
-    },
-    {
-      "num": "20",
-      "name": "hagezi-pro",
-      "old": 38318,
-      "new": 38578,
-      "delta": 260
-    },
-    {
-      "num": "18",
-      "name": "dnshosts-all",
-      "old": 455649,
-      "new": 455742,
-      "delta": 93
+      "num": "38",
+      "name": "OISD-Big",
+      "old": 579,
+      "new": 794,
+      "delta": 215
     },
     {
       "num": "35",
       "name": "hagezi-DoH绕过",
-      "old": 290,
-      "new": 329,
-      "delta": 39
-    },
-    {
-      "num": "04",
-      "name": "217heidai",
-      "old": 39564,
-      "new": 39582,
-      "delta": 18
+      "old": 329,
+      "new": 487,
+      "delta": 158
     },
     {
       "num": "37",
       "name": "AdGuard-钓鱼",
-      "old": 233,
-      "new": 248,
-      "delta": 15
+      "old": 248,
+      "new": 307,
+      "delta": 59
+    },
+    {
+      "num": "18",
+      "name": "dnshosts-all",
+      "old": 455742,
+      "new": 455717,
+      "delta": -25
     },
     {
       "num": "36",
       "name": "AdGuard-DNS",
-      "old": 73,
-      "new": 82,
-      "delta": 9
+      "old": 82,
+      "new": 101,
+      "delta": 19
+    },
+    {
+      "num": "40",
+      "name": "hagezi-Hoster",
+      "old": 58,
+      "new": 59,
+      "delta": 1
     }
   ]
 }
