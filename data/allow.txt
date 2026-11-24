@@ -1,5 +1,5 @@
 ! 放行白名单 | 全量版可选导入，优先级最高
-! 纯域名 11458 + 通配符 557
+! 纯域名 11459 + 通配符 557
 ============================================================
 
 @@||000714.xyz^
@@ -4003,6 +4003,7 @@
 @@||fp-it.fengkongcloud.com^
 @@||fp-upload.dun.163.com^
 @@||fp.tongdun.net^
+@@||fp.yangcong345.com^
 @@||fplay.online^
 @@||fplstatistics.com^
 @@||fpnpmcdn.net^

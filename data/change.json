@@ -1,11 +1,11 @@
 {
-  "time": "2026-11-24 16:22",
+  "time": "2026-11-25 05:56",
   "event": "定时",
   "first": false,
   "total": {
-    "new": 11305162,
-    "old": 11452783,
-    "delta": -147621
+    "new": 11322752,
+    "old": 11305162,
+    "delta": 17590
   },
   "lite": {
     "new": 499998,
@@ -13,59 +13,115 @@
     "delta": 0
   },
   "allow": {
-    "new": 12015,
+    "new": 12016,
     "old": 12015,
-    "delta": 0
+    "delta": 1
   },
   "src_changed": [
     {
+      "num": "21",
+      "name": "hagezi-tif",
+      "old": 2137272,
+      "new": 1092324,
+      "delta": -1044948
+    },
+    {
       "num": "41",
       "name": "trli-Pro",
-      "old": 8239627,
-      "new": 8091576,
-      "delta": -148051
+      "old": 8091576,
+      "new": 8812137,
+      "delta": 720561
     },
     {
-      "num": "38",
-      "name": "OISD-Big",
-      "old": 579,
-      "new": 794,
-      "delta": 215
+      "num": "23",
+      "name": "hagezi-gambling",
+      "old": 322658,
+      "new": 632684,
+      "delta": 310026
     },
     {
-      "num": "35",
-      "name": "hagezi-DoH绕过",
-      "old": 329,
-      "new": 487,
-      "delta": 158
-    },
-    {
-      "num": "37",
-      "name": "AdGuard-钓鱼",
-      "old": 248,
-      "new": 307,
-      "delta": 59
+      "num": "20",
+      "name": "hagezi-pro",
+      "old": 38578,
+      "new": 53417,
+      "delta": 14839
     },
     {
       "num": "18",
       "name": "dnshosts-all",
-      "old": 455742,
-      "new": 455717,
-      "delta": -25
+      "old": 455717,
+      "new": 468504,
+      "delta": 12787
+    },
+    {
+      "num": "19",
+      "name": "AdRules-plus",
+      "old": 8188,
+      "new": 3332,
+      "delta": -4856
+    },
+    {
+      "num": "04",
+      "name": "217heidai",
+      "old": 39582,
+      "new": 43474,
+      "delta": 3892
+    },
+    {
+      "num": "01",
+      "name": "天影ADS拦截",
+      "old": 109938,
+      "new": 113630,
+      "delta": 3692
+    },
+    {
+      "num": "38",
+      "name": "OISD-Big",
+      "old": 794,
+      "new": 1056,
+      "delta": 262
+    },
+    {
+      "num": "35",
+      "name": "hagezi-DoH绕过",
+      "old": 487,
+      "new": 590,
+      "delta": 103
+    },
+    {
+      "num": "14",
+      "name": "HG",
+      "old": 11729,
+      "new": 11748,
+      "delta": 19
     },
     {
       "num": "36",
       "name": "AdGuard-DNS",
-      "old": 82,
-      "new": 101,
-      "delta": 19
+      "old": 101,
+      "new": 114,
+      "delta": 13
+    },
+    {
+      "num": "37",
+      "name": "AdGuard-钓鱼",
+      "old": 307,
+      "new": 296,
+      "delta": -11
     },
     {
       "num": "40",
       "name": "hagezi-Hoster",
-      "old": 58,
-      "new": 59,
-      "delta": 1
+      "old": 59,
+      "new": 64,
+      "delta": 5
+    },
+    {
+      "num": "22",
+      "name": "hagezi-dyndns",
+      "old": 1494,
+      "new": 1493,
+      "delta": -1
     }
   ]
 }
