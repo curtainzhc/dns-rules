@@ -1,0 +1,21 @@
+{
+  "time": "2026-11-24 12:12",
+  "event": "手动",
+  "first": false,
+  "total": {
+    "new": 11471447,
+    "old": 11471447,
+    "delta": 0
+  },
+  "lite": {
+    "new": 499998,
+    "old": 499998,
+    "delta": 0
+  },
+  "allow": {
+    "new": 12015,
+    "old": 12015,
+    "delta": 0
+  },
+  "src_changed": []
+}
