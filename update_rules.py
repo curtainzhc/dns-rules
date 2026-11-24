@@ -249,8 +249,79 @@ def atomic_write(path, content):
         f.write(content)
     os.replace(tmp, path)
 
+def write_change(meta, old_meta, items):
+    """对比更新前后的 meta，生成本次变更摘要 data/change.json。"""
+    old = old_meta if isinstance(old_meta, dict) else {}
+    def delta(key):
+        nv, ov = meta.get(key, 0), old.get(key, 0)
+        return nv - ov if isinstance(nv, (int, float)) and isinstance(ov, (int, float)) else 0
+    ev = os.environ.get("GITHUB_EVENT_NAME", "")
+    event = "定时" if ev == "schedule" else ("手动" if ev == "workflow_dispatch" else "本地")
+    # 北京时间（runner 多为 UTC，这里手动 +8 避免时区误差）
+    ts_bj = time.strftime("%Y-%m-%d %H:%M", time.gmtime(time.time() + 8 * 3600))
+    old_ps, new_ps = old.get("per_src", {}), meta.get("per_src", {})
+    src_changed = []
+    for num in set(list(old_ps) + list(new_ps)):
+        d = new_ps.get(num, 0) - old_ps.get(num, 0)
+        if d:
+            src_changed.append({"num": num, "name": items.get(num, (num,))[0],
+                                "old": old_ps.get(num, 0), "new": new_ps.get(num, 0), "delta": d})
+    src_changed.sort(key=lambda x: -abs(x["delta"]))
+    change = {
+        "time": ts_bj, "event": event, "first": not bool(old),
+        "total": {"new": meta.get("total", 0), "old": old.get("total", 0), "delta": delta("total")},
+        "lite": {"new": meta.get("lite_total", 0), "old": old.get("lite_total", 0), "delta": delta("lite_total")},
+        "allow": {"new": meta.get("allow", 0), "old": old.get("allow", 0), "delta": delta("allow")},
+        "src_changed": src_changed,
+    }
+    atomic_write(os.path.join(DATA, "change.json"), json.dumps(change, ensure_ascii=False, indent=2))
+
+
+def append_autolog():
+    """把本次变更追加一行到 AUTOLOG.md；仅在 workflow 环境（WRITE_AUTOLOG=1）执行。"""
+    if os.environ.get("WRITE_AUTOLOG") != "1":
+        return
+    cp = os.path.join(DATA, "change.json")
+    if not os.path.exists(cp):
+        return
+    c = json.load(open(cp, encoding="utf-8"))
+    fm = lambda x: f"{x:,}"
+    dl = lambda x: "±0" if x == 0 else f"{x:+,}"
+    if c.get("first"):
+        detail = "首次构建"
+    elif c["total"]["delta"] == 0 and c["lite"]["delta"] == 0 and not c["src_changed"]:
+        detail = "规则无实质变化"
+    else:
+        parts = [f"源{s['num']} {s['name']} {dl(s['delta'])}" for s in c["src_changed"][:8]]
+        if len(c["src_changed"]) > 8:
+            rest = sum(abs(s["delta"]) for s in c["src_changed"][8:])
+            parts.append(f"其余{len(c['src_changed'])-8}源合计变动{fm(rest)}")
+        detail = "；".join(parts) if parts else "条数微调"
+    row = (f"| {c['time']} | {c['event']} | "
+           f"{fm(c['total']['new'])} ({dl(c['total']['delta'])}) | "
+           f"{fm(c['lite']['new'])} ({dl(c['lite']['delta'])}) | "
+           f"{dl(c['allow']['delta'])} | {detail} |")
+    logp = os.path.join(BASE, "AUTOLOG.md")
+    if os.path.exists(logp):
+        old = open(logp, encoding="utf-8").read().rstrip("\n")
+    else:
+        old = ("# 自动更新日志\n\n"
+               "GitHub Actions 每 6 小时自动拉取、清洗、去重合并规则，本表逐条记录每次更新的实质变化。\n"
+               "人工功能里程碑见 [CHANGELOG.md](CHANGELOG.md)。\n\n"
+               "| 时间(北京) | 触发 | 全量条数(增减) | 精简版(增减) | 白名单增减 | 本次变化明细 |\n"
+               "|---|---|---|---|---|---|")
+    open(logp, "w", encoding="utf-8").write(old + "\n" + row + "\n")
+
+
 def build():
     items = load_urls()
+    old_meta = None
+    _mp = os.path.join(DATA, "meta.json")
+    if os.path.exists(_mp):
+        try:
+            old_meta = json.load(open(_mp, encoding="utf-8"))
+        except Exception:
+            old_meta = None
     allow_set, allow_wild = set(), []
     for num in ("02", "07"):
         name = items.get(num, (str(num),))[0]
@@ -423,6 +494,7 @@ def build():
             "allow": len(allow_set) + len(allow_wild), "removed_sub": removed,
             "cat": cat_count, "per_src": per_src}
     atomic_write(os.path.join(DATA, "meta.json"), json.dumps(meta, ensure_ascii=False, indent=2))
+    write_change(meta, old_meta, items)
     return meta
 
 if __name__ == "__main__":
@@ -433,4 +505,5 @@ if __name__ == "__main__":
         name = items.get(num, (str(num),))[0]
         print(f"  [{num}] {name} 转换 {convert_special(num, name)} 条", flush=True)
     meta = build()
+    append_autolog()
     print(f"更新完成: 源 {ok}/{len(fetch_res)} 成功, 规则 {meta['total']:,}, 耗时 {time.time()-t0:.0f}s", flush=True)
