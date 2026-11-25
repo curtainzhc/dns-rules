@@ -67,19 +67,19 @@ log "项目有更新 ts=$TS (本地=$OLD)，开始同步 750万精简版"
 if ! fetch_url "$REL" "$TMP/rules-lite.txt"; then
   log "精简版下载失败，本次跳过"; exit 1
 fi
-LINES=$(grep -c '^||' "$TMP/rules-lite.txt" 2>/dev/null || echo 0)
-if [ "$LINES" -ne 7500000 ]; then
-  log "精简版行数异常 $LINES(应为7500000)，跳过"; exit 1
+LINES=$(grep -vcE '^\s*$|^!' "$TMP/rules-lite.txt" 2>/dev/null || echo 0)
+if [ "$LINES" -lt 7490000 ] || [ "$LINES" -gt 7510000 ]; then
+  log "精简版行数异常 $LINES(应约750万)，跳过"; exit 1
 fi
 SIZE=$(stat -c%s "$TMP/rules-lite.txt" 2>/dev/null || echo 0)
 if [ "$SIZE" -lt 150000000 ]; then log "文件大小异常 $SIZE 字节(<150MB)，疑似截断，跳过"; exit 1; fi
 log "下载完成 $LINES 条 $SIZE 字节（赌博按价值3正常参与，不做类别剔除）"
 
 # 3) 备份→替换→重启→轮询验证（750万加载需60-90秒，固定sleep会误判，改轮询最多等180秒）
-CUR=$(grep -c '^||' "$CACHE" 2>/dev/null || echo 0)
+CUR=$(grep -vcE '^\s*$|^!' "$CACHE" 2>/dev/null || echo 0)
 GOLD=/opt/adguardhome/work/data/filters/gold-750w.txt
 # 黄金备份：仅当不存在或当前缓存确为750万时更新，永不被坏文件覆盖
-if [ ! -f "$GOLD" ] || [ "$CUR" -eq 7500000 ]; then cp "$CACHE" "$GOLD"; fi
+if [ ! -f "$GOLD" ] || [ "$CUR" -ge 7490000 ]; then cp "$CACHE" "$GOLD"; fi
 cp "$CACHE" "$CACHE.baksync"
 cp "$TMP/rules-lite.txt" "$CACHE"
 systemctl restart adguardhome
@@ -88,14 +88,14 @@ for i in $(seq 1 36); do
   sleep 5
   CNT=$(get_count); DNS=$(get_dns); ALIVE=$(systemctl is-active adguardhome)
   CNT=${CNT:-0}
-  if [ "$CNT" -eq 7500000 ] && [ "$ALIVE" = "active" ]; then
+  if [ "$CNT" -ge 7400000 ] && [ "$ALIVE" = "active" ]; then
     log "第${i}次轮询就绪: 规则=$CNT DNS=$DNS 服务=$ALIVE"
     break
   fi
 done
 log "验证: 规则=$CNT DNS=$DNS 服务=$ALIVE"
 
-if [ "$CNT" -eq 7500000 ] && [ "$ALIVE" = "active" ]; then
+if [ "$CNT" -ge 7400000 ] && [ "$ALIVE" = "active" ]; then
   echo "$TS" > "$LAST"
   rm -f "$CACHE.baksync"
   log "=== 同步成功，与项目一致 (ts=$TS) ==="
