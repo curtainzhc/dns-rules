@@ -1,0 +1,83 @@
+name: 更新看门狗
+
+# 每 2 小时检查一次：距上次成功更新超过 8 小时就自动补跑主更新脚本。
+# 防止 GitHub 因高负载丢弃定时任务后长期不更新。
+on:
+  schedule:
+    - cron: '7 */2 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rules-update
+  cancel-in-progress: false
+
+jobs:
+  watchdog:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: 检出仓库
+        uses: actions/checkout@v4
+
+      - name: 设置 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 检查更新新鲜度
+        id: check
+        run: |
+          AGE=$(python3 -c "import json,time; print(int(time.time())-json.load(open('data/meta.json'))['updated_ts'])")
+          echo "距上次更新 $AGE 秒（阈值 28800 秒 = 8 小时）"
+          if [ "$AGE" -gt 28800 ]; then
+            echo "stale=true" >> "$GITHUB_OUTPUT"
+            echo "超过 8 小时未更新，触发补跑"
+          else
+            echo "stale=false" >> "$GITHUB_OUTPUT"
+            echo "更新新鲜，跳过"
+          fi
+
+      - name: 补跑更新（失败自动重试2次）
+        if: steps.check.outputs.stale == 'true'
+        run: |
+          for i in 1 2 3; do
+            echo "===== 补跑第 $i 次尝试 ====="
+            if python3 update_rules.py; then
+              echo "补跑成功"
+              exit 0
+            fi
+            sleep 30
+          done
+          echo "看门狗补跑 3 次均失败" >&2
+          exit 1
+        env:
+          WRITE_AUTOLOG: '1'
+
+      - name: 提交补跑结果
+        if: steps.check.outputs.stale == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/rules-lite.txt data/allow.txt data/meta.json data/change.json AUTOLOG.md
+          if git diff --cached --quiet; then
+            echo "小文件无变化，跳过提交"
+          else
+            git commit -m "看门狗补跑 $(date -u +'%Y-%m-%d %H:%M UTC')"
+            git push
+            echo "补跑结果已提交"
+          fi
+
+      - name: 上传全量规则到 Release
+        if: steps.check.outputs.stale == 'true'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: full-rules
+          name: 全量规则（1147万条）
+          body: 自动更新的全量去重规则，供 AdGuard Home 使用。精简版见仓库 data/rules-lite.txt。
+          files: data/rules.txt
+          keep_standard: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
