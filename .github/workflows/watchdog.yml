@@ -85,3 +85,28 @@ jobs:
           keep_standard: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 推送补跑规则到服务器（直连，绕开代理）
+        if: steps.check.outputs.stale == 'true'
+        env:
+          SERVER_IP: ${{ secrets.SERVER_IP }}
+          SERVER_USER: ${{ secrets.SERVER_USER }}
+          SERVER_SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}
+        run: |
+          echo "=== 准备 SSH 密钥 ==="
+          mkdir -p ~/.ssh
+          echo "$SERVER_SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H "$SERVER_IP" >> ~/.ssh/known_hosts 2>/dev/null
+          SSH="ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -o ConnectTimeout=20 ${SERVER_USER}@${SERVER_IP}"
+
+          echo "=== 推送 meta 与规则文件（直连 scp） ==="
+          scp -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -o ConnectTimeout=20 \
+            data/meta.json ${SERVER_USER}@${SERVER_IP}:/tmp/push_meta.json
+          scp -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -o ConnectTimeout=900 \
+            data/rules-lite.txt ${SERVER_USER}@${SERVER_IP}:/tmp/push_rules-lite.txt
+          echo "文件已推送"
+
+          echo "=== 触发服务器接收脚本 ==="
+          $SSH 'sudo /opt/luckdns-site/push-receive.sh /tmp/push_rules-lite.txt'
+          echo "=== 服务器同步完成 ==="
