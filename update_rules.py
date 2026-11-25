@@ -287,20 +287,19 @@ def append_autolog():
     c = json.load(open(cp, encoding="utf-8"))
     fm = lambda x: f"{x:,}"
     dl = lambda x: "±0" if x == 0 else f"{x:+,}"
+    dm = lambda x: f"{x/10000:+.0f}万"
     if c.get("first"):
         detail = "首次构建"
     elif c["total"]["delta"] == 0 and c["lite"]["delta"] == 0 and not c["src_changed"]:
         detail = "规则无实质变化"
     else:
-        parts = [f"源{s['num']} {s['name']} {dl(s['delta'])}" for s in c["src_changed"][:8]]
-        if len(c["src_changed"]) > 8:
-            rest = sum(abs(s["delta"]) for s in c["src_changed"][8:])
-            parts.append(f"其余{len(c['src_changed'])-8}源合计变动{fm(rest)}")
+        parts = [f"{s['name'][:14]} {dm(s['delta'])}" for s in c["src_changed"][:2]]
         detail = "；".join(parts) if parts else "条数微调"
-    row = (f"| {c['time']} | {c['event']} | "
-           f"{fm(c['total']['new'])} ({dl(c['total']['delta'])}) | "
-           f"{fm(c['lite']['new'])} ({dl(c['lite']['delta'])}) | "
-           f"{dl(c['allow']['delta'])} | {detail} |")
+    wm = lambda x: "" if x == 0 else f" {'+' if x > 0 else '-'}{abs(x)/10000:.0f}万"
+    t = c['time'][5:] if len(c['time']) >= 16 else c['time']
+    ev = "" if c['event'] == "定时" else " " + c['event']
+    row = (f"| {t}{ev} | {fm(c['total']['new'])}{wm(c['total']['delta'])} | "
+           f"{fm(c['lite']['new'])}{wm(c['lite']['delta'])} | {detail} |")
     logp = os.path.join(BASE, "AUTOLOG.md")
     if os.path.exists(logp):
         old = open(logp, encoding="utf-8").read().rstrip("\n")
@@ -308,8 +307,8 @@ def append_autolog():
         old = ("# 自动更新日志\n\n"
                "GitHub Actions 每 6 小时自动拉取、清洗、去重合并规则，本表逐条记录每次更新的实质变化。\n"
                "人工功能里程碑见 [CHANGELOG.md](CHANGELOG.md)。\n\n"
-               "| 时间(北京) | 触发 | 全量条数(增减) | 精简版(增减) | 白名单增减 | 本次变化明细 |\n"
-               "|---|---|---|---|---|---|")
+               "| 时间(北京) | 全量 | 精简版 | 本次变化 |\n"
+               "|---|---|---|---|")
     open(logp, "w", encoding="utf-8").write(old + "\n" + row + "\n")
 
 
