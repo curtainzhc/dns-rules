@@ -2,14 +2,14 @@
 # -*- coding: utf-8 -*-
 """GitHub Actions 专用：拉取原项目 -> 合并去重 -> 裁剪50万 -> 写入 data/。
 GitHub runner 在境外，raw.githubusercontent.com 直连即可，无需代理。"""
-import os, re, json, time, urllib.request, concurrent.futures
+import os, re, json, time, gc, urllib.request, concurrent.futures
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 RAW = os.path.join(BASE, "data", "raw")
 DATA = os.path.join(BASE, "data")
 TARGET = None          # None = 不裁剪，输出全部去重规则
 BUILD_TO = None
-LITE_TOTAL = 499998    # 精简版纯拦截条数（50 万上限减 2 条，规避订阅 App 的 50 万硬上限）
+LITE_TOTAL = 2300000   # 精简版纯拦截条数（服务器部署档：230 万，本机内存可稳跑）
 SKIP_NUMS = {"15"}       # gitcode WAF 拦截页
 SPECIAL_NUMS = {"18"}    # 斜杠分隔聚合格式
 
@@ -436,6 +436,8 @@ def build():
         per_src[num] = added
 
     refresh_src_of()   # 重算每个域名的最优价值来源
+    # src_mask 用完即弃：1147万条 × int 约占 400MB，及时释放降低峰值
+    src_mask.clear(); del src_mask; gc.collect()
 
     net_domains = {d for d, (v, _) in cand.items() if v.startswith("||")}
     removed = 0
@@ -464,10 +466,20 @@ def build():
     # 其余按 LITE_VALUE 分级：1 必用（国内广告/设备原生/隐私）> 2 安全 > 3 补充 > 99 赌博成人。
     # 赌博/成人值 99 排最后，自然挤不进前 50 万；
     # 不再因一个域出现在赌博源就硬剔除，避免主流广告域被牵连漏拦。
-    lite_items = sorted(
-        final_items,
-        key=lambda kv: (0 if kv[0] in LITE_MUST else LITE_VALUE.get(src_of.get(kv[0]), 3)),
-    )[:LITE_TOTAL]
+    # 按价值分桶取（等价全量排序后取前 N，但避免一次对千万条做 sorted，显著降内存）
+    lite_buckets = {}
+    for kv in final_items:
+        lvl = 0 if kv[0] in LITE_MUST else LITE_VALUE.get(src_of.get(kv[0]), 3)
+        if lvl >= 99 or kv[1][1] == "赌博/成人":   # 赌博成人一律剔除（按价值+按类别双保险）
+            continue
+        lite_buckets.setdefault(lvl, []).append(kv)
+    lite_items = []
+    for lvl in sorted(lite_buckets):
+        lite_items.extend(lite_buckets[lvl])
+        if len(lite_items) >= LITE_TOTAL:
+            break
+    del lite_buckets; gc.collect()
+    lite_items = lite_items[:LITE_TOTAL]
     lite_rules = sorted(v for d, (v, _) in lite_items)
     lite_cat = {}
     for d, (v, c) in lite_items:
