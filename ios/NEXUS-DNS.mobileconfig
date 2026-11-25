@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>PayloadContent</key>
+  <array>
+    <dict>
+      <key>PayloadType</key>
+      <string>com.apple.dnsSettings.managed</string>
+      <key>PayloadVersion</key>
+      <integer>1</integer>
+      <key>PayloadIdentifier</key>
+      <string>com.nexus.dns.settings.719C6EEB-2078-41AA-9A54-E6F4C899E6BE</string>
+      <key>PayloadUUID</key>
+      <string>719C6EEB-2078-41AA-9A54-E6F4C899E6BE</string>
+      <key>PayloadDisplayName</key>
+      <string>NEXUS DNS 过滤</string>
+      <key>PayloadDescription</key>
+      <string>网络级广告过滤 DNS，服务器 8.134.182.253</string>
+      <key>PayloadEnabled</key>
+      <true/>
+      <key>DNSSettings</key>
+      <dict>
+        <key>DNSProtocol</key>
+        <string>UDP</string>
+        <key>Servers</key>
+        <array>
+          <string>8.134.182.253</string>
+        </array>
+      </dict>
+    </dict>
+  </array>
+  <key>PayloadType</key>
+  <string>Configuration</string>
+  <key>PayloadVersion</key>
+  <integer>1</integer>
+  <key>PayloadIdentifier</key>
+  <string>com.nexus.dns.profile.40447C03-433F-4A87-80CA-036B3C8C2286</string>
+  <key>PayloadUUID</key>
+  <string>40447C03-433F-4A87-80CA-036B3C8C2286</string>
+  <key>PayloadDisplayName</key>
+  <string>NEXUS DNS</string>
+  <key>PayloadDescription</key>
+  <string>安装后全设备走 NEXUS 过滤 DNS（8.134.182.253）</string>
+  <key>PayloadOrganization</key>
+  <string>NEXUS</string>
+</dict>
+</plist>
