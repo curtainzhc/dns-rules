@@ -1,19 +1,26 @@
 name: 自动更新规则
 
-# 每 6 小时自动跑一次（UTC 时间：0,6,12,18 点整）
+# 每 6 小时两次触发机会（UTC 第 13/43 分，错开整点防 GitHub 高负载丢弃）
+# 另有 watchdog.yml 每 2 小时看门，超时未更新会自动补跑
 # 也支持在 Actions 页面手动点 Run workflow 立即更新
 on:
   schedule:
-    - cron: '0 */6 * * *'
+    - cron: '13 */6 * * *'
+    - cron: '43 */6 * * *'
   workflow_dispatch:
 
-# 允许脚本把更新后的规则提交回仓库、上传 Release
 permissions:
   contents: write
+
+# 主更新与看门狗共用一组，避免同时改文件互相冲突
+concurrency:
+  group: rules-update
+  cancel-in-progress: false
 
 jobs:
   update:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - name: 检出仓库
         uses: actions/checkout@v4
@@ -23,8 +30,19 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: 拉取原项目并合并去重
-        run: python3 update_rules.py
+      - name: 拉取原项目并合并去重（失败自动重试2次）
+        run: |
+          for i in 1 2 3; do
+            echo "===== 第 $i 次尝试 ====="
+            if python3 update_rules.py; then
+              echo "更新成功"
+              exit 0
+            fi
+            echo "第 $i 次失败，30 秒后重试"
+            sleep 30
+          done
+          echo "3 次均失败" >&2
+          exit 1
         env:
           WRITE_AUTOLOG: '1'
 
