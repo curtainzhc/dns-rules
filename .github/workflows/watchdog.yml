@@ -61,7 +61,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/rules-lite.txt data/allow.txt data/meta.json data/change.json AUTOLOG.md
+          git add data/allow.txt data/meta.json data/change.json AUTOLOG.md
           if git diff --cached --quiet; then
             echo "小文件无变化，跳过提交"
           else
@@ -70,14 +70,18 @@ jobs:
             echo "补跑结果已提交"
           fi
 
-      - name: 上传全量规则到 Release
+      - name: 上传全量与精简版到 Release
         if: steps.check.outputs.stale == 'true'
         uses: softprops/action-gh-release@v2
         with:
           tag_name: full-rules
-          name: 全量规则（1147万条）
-          body: 自动更新的全量去重规则，供 AdGuard Home 使用。精简版见仓库 data/rules-lite.txt。
-          files: data/rules.txt
+          name: 规则全集（全量1147万 + 精简版750万）
+          body: |
+            全量 rules.txt（1147万条）与精简版 rules-lite.txt（750万条）均超 Git 100MB 单文件限制，故走 Release。
+            项目与服务器统一使用精简版 750 万条。
+          files: |
+            data/rules.txt
+            data/rules-lite.txt
           keep_standard: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
