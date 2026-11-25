@@ -1,99 +1,127 @@
 {
-  "time": "2026-11-25 14:58",
-  "event": "定时",
+  "time": "2026-11-26 00:38",
+  "event": "手动",
   "first": false,
   "total": {
-    "new": 10960181,
-    "old": 11322752,
-    "delta": -362571
+    "new": 10990723,
+    "old": 11471447,
+    "delta": -480724
   },
   "lite": {
-    "new": 499998,
-    "old": 499998,
+    "new": 7500000,
+    "old": 7500000,
     "delta": 0
   },
   "allow": {
-    "new": 12016,
-    "old": 12016,
+    "new": 12015,
+    "old": 12015,
     "delta": 0
   },
   "src_changed": [
     {
-      "num": "41",
-      "name": "trli-Pro",
-      "old": 8812137,
-      "new": 8619997,
-      "delta": -192140
-    },
-    {
       "num": "21",
       "name": "hagezi-tif",
-      "old": 1092324,
-      "new": 943703,
-      "delta": -148621
+      "old": 1976139,
+      "new": 871241,
+      "delta": -1104898
+    },
+    {
+      "num": "41",
+      "name": "trli-Pro",
+      "old": 8237538,
+      "new": 8689698,
+      "delta": 452160
     },
     {
       "num": "23",
       "name": "hagezi-gambling",
-      "old": 632684,
-      "new": 607276,
-      "delta": -25408
+      "old": 513511,
+      "new": 640095,
+      "delta": 126584
     },
     {
       "num": "18",
       "name": "dnshosts-all",
-      "old": 468504,
-      "new": 472340,
-      "delta": 3836
-    },
-    {
-      "num": "04",
-      "name": "217heidai",
-      "old": 43474,
-      "new": 44470,
-      "delta": 996
-    },
-    {
-      "num": "38",
-      "name": "OISD-Big",
-      "old": 1056,
-      "new": 475,
-      "delta": -581
-    },
-    {
-      "num": "35",
-      "name": "hagezi-DoH绕过",
-      "old": 590,
-      "new": 231,
-      "delta": -359
+      "old": 455679,
+      "new": 472966,
+      "delta": 17287
     },
     {
       "num": "20",
       "name": "hagezi-pro",
-      "old": 53417,
-      "new": 53136,
-      "delta": -281
+      "old": 36258,
+      "new": 52590,
+      "delta": 16332
+    },
+    {
+      "num": "01",
+      "name": "天影ADS拦截",
+      "old": 109938,
+      "new": 114242,
+      "delta": 4304
+    },
+    {
+      "num": "04",
+      "name": "217heidai",
+      "old": 40197,
+      "new": 44474,
+      "delta": 4277
     },
     {
       "num": "19",
       "name": "AdRules-plus",
-      "old": 3332,
-      "new": 3480,
-      "delta": 148
+      "old": 2205,
+      "new": 3219,
+      "delta": 1014
+    },
+    {
+      "num": "38",
+      "name": "OISD-Big",
+      "old": 60,
+      "new": 449,
+      "delta": 389
+    },
+    {
+      "num": "35",
+      "name": "hagezi-DoH绕过",
+      "old": 34,
+      "new": 245,
+      "delta": 211
     },
     {
       "num": "37",
       "name": "AdGuard-钓鱼",
-      "old": 296,
-      "new": 184,
-      "delta": -112
+      "old": 79,
+      "new": 247,
+      "delta": 168
+    },
+    {
+      "num": "14",
+      "name": "HG",
+      "old": 11693,
+      "new": 11748,
+      "delta": 55
     },
     {
       "num": "36",
       "name": "AdGuard-DNS",
-      "old": 114,
-      "new": 103,
-      "delta": -11
+      "old": 38,
+      "new": 61,
+      "delta": 23
+    },
+    {
+      "num": "22",
+      "name": "hagezi-dyndns",
+      "old": 1506,
+      "new": 1494,
+      "delta": -12
+    },
+    {
+      "num": "40",
+      "name": "hagezi-Hoster",
+      "old": 57,
+      "new": 63,
+      "delta": 6
     },
     {
       "num": "10",
@@ -101,13 +129,6 @@
       "old": 9871,
       "new": 9872,
       "delta": 1
-    },
-    {
-      "num": "40",
-      "name": "hagezi-Hoster",
-      "old": 64,
-      "new": 63,
-      "delta": -1
     }
   ]
 }

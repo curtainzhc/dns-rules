@@ -1,5 +1,5 @@
 ! 放行白名单 | 全量版可选导入，优先级最高
-! 纯域名 11459 + 通配符 557
+! 纯域名 11458 + 通配符 557
 ============================================================
 
 @@||000714.xyz^
@@ -5824,7 +5824,6 @@
 @@||link.mcmod.cn^
 @@||link.meet5.net^
 @@||link.morningbrew.com^
-@@||link.nzz.ch^
 @@||link.sylikes.com^
 @@||link.technics-goods.info^
 @@||link.theplatform.com^
