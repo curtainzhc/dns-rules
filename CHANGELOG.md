@@ -44,4 +44,10 @@
 - **数据源**：89 个开源规则源（15 号因 WAF 拦截页跳过，41 号 trli-Pro 为超大全球黑名单，42 号 EasyList-China，43–90 为 hagezi/官方推荐等源）
 - **服务器**：DoH/DoT 加密入口 `zhcluck.duckdns.org`，6 个加密 DoH 上游并行 + 乐观缓存，IPv6 开启、ECS/DNSSEC 关闭
 
+## 2026-11-26
+
+| 时间 | 类型 | 更新内容 |
+|---|---|---|
+| 08:01 | 重大修复 | 修复 App Store / iCloud / Apple Music 打不开：07:37 轮自动更新引入的 `||akadns.net^` 整域 CDN 规则，把 Apple 依赖的 Akamai CDN（CNAME 到 akadns.net）全部误杀成 `0.0.0.0`。在 `update_rules.py` 新增 `BLOCK_CDN_ROOTS`（akadns/cloudfront/azure/fastly/amazonaws 等 14 个根域），只剔除「整域 CDN 一把梭」规则，旗下具体广告子域（如 `a1.adformnet.akadns.net`）全部保留。规则数仍 750 万，去广告能力不变；同时清理服务器上临时加的苹果 user_rules 冗余白名单，源头已根治无需兜底 |
+
 > 每次 `fix:` / `chore:` / `docs:` 提交后，GitHub Actions 都会自动重建规则产物并提交一条「自动更新规则」记录，确保线上订阅始终为最新合并结果。
