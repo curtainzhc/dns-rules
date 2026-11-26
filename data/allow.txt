@@ -1,5 +1,5 @@
 ! 放行白名单 | 全量版可选导入，优先级最高
-! 纯域名 11458 + 通配符 557
+! 纯域名 11459 + 通配符 557
 ============================================================
 
 @@||000714.xyz^
@@ -6733,6 +6733,7 @@
 @@||multitest.ua^
 @@||multiup.org^
 @@||mum.alibabachengdun.com^
+@@||mum.alibabachengdun.net^
 @@||mumu.163.com^
 @@||munchkin.marketo.net^
 @@||museum-29.dajya-ranger.com^
