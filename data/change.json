@@ -1,11 +1,11 @@
 {
-  "time": "2026-11-26 13:45",
+  "time": "2026-11-26 14:38",
   "event": "手动",
   "first": false,
   "total": {
-    "new": 11155227,
-    "old": 11151903,
-    "delta": 3324
+    "new": 11852025,
+    "old": 11155227,
+    "delta": 696798
   },
   "lite": {
     "new": 7500000,
@@ -19,67 +19,284 @@
   },
   "src_changed": [
     {
-      "num": "41",
-      "name": "trli-Pro",
-      "old": 8625035,
-      "new": 8628811,
-      "delta": 3776
+      "num": "89",
+      "name": "1Hosts-Xtra",
+      "old": 0,
+      "new": 589372,
+      "delta": 589372
     },
     {
-      "num": "35",
-      "name": "hagezi-DoH绕过",
-      "old": 313,
-      "new": 136,
-      "delta": -177
+      "num": "79",
+      "name": "hagezi-AntiPiracy",
+      "old": 0,
+      "new": 59541,
+      "delta": 59541
     },
     {
-      "num": "38",
-      "name": "OISD-Big",
-      "old": 375,
-      "new": 208,
-      "delta": -167
+      "num": "52",
+      "name": "URLHaus",
+      "old": 0,
+      "new": 16965,
+      "delta": 16965
+    },
+    {
+      "num": "80",
+      "name": "hagezi-Ultimate",
+      "old": 0,
+      "new": 14098,
+      "delta": 14098
+    },
+    {
+      "num": "87",
+      "name": "hagezi-URLShortener",
+      "old": 0,
+      "new": 7113,
+      "delta": 7113
+    },
+    {
+      "num": "88",
+      "name": "ShadowWhisperer-Tracking",
+      "old": 0,
+      "new": 4139,
+      "delta": 4139
+    },
+    {
+      "num": "77",
+      "name": "ShadowWhisperer-Malware",
+      "old": 0,
+      "new": 3003,
+      "delta": 3003
+    },
+    {
+      "num": "59",
+      "name": "PhishingArmy",
+      "old": 0,
+      "new": 1369,
+      "delta": 1369
+    },
+    {
+      "num": "55",
+      "name": "Polish-Pihole",
+      "old": 0,
+      "new": 989,
+      "delta": 989
+    },
+    {
+      "num": "85",
+      "name": "ShadowWhisperer-Dating",
+      "old": 0,
+      "new": 870,
+      "delta": 870
+    },
+    {
+      "num": "53",
+      "name": "Dandelion-AntiMalware",
+      "old": 0,
+      "new": 608,
+      "delta": 608
+    },
+    {
+      "num": "50",
+      "name": "HackedMalware",
+      "old": 0,
+      "new": 432,
+      "delta": 432
+    },
+    {
+      "num": "64",
+      "name": "1Hosts-Lite",
+      "old": 0,
+      "new": 275,
+      "delta": 275
+    },
+    {
+      "num": "70",
+      "name": "hagezi-Normal",
+      "old": 0,
+      "new": 177,
+      "delta": 177
     },
     {
       "num": "37",
       "name": "AdGuard-钓鱼",
-      "old": 209,
-      "new": 148,
-      "delta": -61
+      "old": 148,
+      "new": 0,
+      "delta": -148
     },
     {
-      "num": "18",
-      "name": "dnshosts-all",
-      "old": 463610,
-      "new": 463589,
-      "delta": -21
+      "num": "38",
+      "name": "OISD-Big",
+      "old": 208,
+      "new": 93,
+      "delta": -115
+    },
+    {
+      "num": "67",
+      "name": "Phishing-PhishTank",
+      "old": 0,
+      "new": 60,
+      "delta": 60
+    },
+    {
+      "num": "54",
+      "name": "Dandelion-Nordic",
+      "old": 0,
+      "new": 41,
+      "delta": 41
+    },
+    {
+      "num": "69",
+      "name": "StevenBlack",
+      "old": 0,
+      "new": 33,
+      "delta": 33
     },
     {
       "num": "36",
       "name": "AdGuard-DNS",
-      "old": 66,
-      "new": 46,
-      "delta": -20
+      "old": 46,
+      "new": 67,
+      "delta": 21
     },
     {
-      "num": "10",
-      "name": "EasyPrivacy",
-      "old": 9868,
-      "new": 9869,
-      "delta": 1
+      "num": "72",
+      "name": "EasyList-Lithuania",
+      "old": 0,
+      "new": 20,
+      "delta": 20
     },
     {
-      "num": "01",
-      "name": "天影ADS拦截",
-      "old": 114256,
-      "new": 114255,
-      "delta": -1
+      "num": "57",
+      "name": "ABPVN",
+      "old": 0,
+      "new": 19,
+      "delta": 19
+    },
+    {
+      "num": "73",
+      "name": "NoGoogle",
+      "old": 0,
+      "new": 15,
+      "delta": 15
+    },
+    {
+      "num": "35",
+      "name": "hagezi-DoH绕过",
+      "old": 136,
+      "new": 122,
+      "delta": -14
     },
     {
       "num": "40",
       "name": "hagezi-Hoster",
-      "old": 62,
-      "new": 61,
-      "delta": -1
+      "old": 61,
+      "new": 48,
+      "delta": -13
+    },
+    {
+      "num": "45",
+      "name": "DanPollock",
+      "old": 0,
+      "new": 7,
+      "delta": 7
+    },
+    {
+      "num": "51",
+      "name": "Scam-DurableNapkin",
+      "old": 0,
+      "new": 5,
+      "delta": 5
+    },
+    {
+      "num": "60",
+      "name": "PersianBlocker",
+      "old": 0,
+      "new": 4,
+      "delta": 4
+    },
+    {
+      "num": "65",
+      "name": "turk-adlist",
+      "old": 0,
+      "new": 3,
+      "delta": 3
+    },
+    {
+      "num": "61",
+      "name": "Macedonian",
+      "old": 0,
+      "new": 3,
+      "delta": 3
+    },
+    {
+      "num": "74",
+      "name": "Dandelion-Push",
+      "old": 0,
+      "new": 3,
+      "delta": 3
+    },
+    {
+      "num": "58",
+      "name": "Frellwit-Swedish",
+      "old": 0,
+      "new": 2,
+      "delta": 2
+    },
+    {
+      "num": "48",
+      "name": "Perflyst-SmartTV",
+      "old": 0,
+      "new": 2,
+      "delta": 2
+    },
+    {
+      "num": "78",
+      "name": "EasyList-Hebrew",
+      "old": 0,
+      "new": 2,
+      "delta": 2
+    },
+    {
+      "num": "66",
+      "name": "AdRules-DNS",
+      "old": 0,
+      "new": 2,
+      "delta": 2
+    },
+    {
+      "num": "81",
+      "name": "uBO-Badware",
+      "old": 0,
+      "new": 1,
+      "delta": 1
+    },
+    {
+      "num": "44",
+      "name": "PeterLowe",
+      "old": 0,
+      "new": 1,
+      "delta": 1
+    },
+    {
+      "num": "63",
+      "name": "ABPindo",
+      "old": 0,
+      "new": 1,
+      "delta": 1
+    },
+    {
+      "num": "71",
+      "name": "Hufilter",
+      "old": 0,
+      "new": 1,
+      "delta": 1
+    },
+    {
+      "num": "75",
+      "name": "Turkish-AdHosts",
+      "old": 0,
+      "new": 1,
+      "delta": 1
     }
   ]
 }
