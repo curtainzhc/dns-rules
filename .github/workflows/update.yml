@@ -63,9 +63,9 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: full-rules
-          name: 规则全集（全量1147万 + 精简版750万）
+          name: 规则全集（全量1159万 + 精简版750万）
           body: |
-            全量 rules.txt（1147万条）与精简版 rules-lite.txt（750万条）均超 Git 100MB 单文件限制，故走 Release。
+            全量 rules.txt（1159万条）与精简版 rules-lite.txt（750万条）均超 Git 100MB 单文件限制，故走 Release。
             项目与服务器统一使用精简版 750 万条，订阅地址见 README。
           files: |
             data/rules.txt
@@ -96,6 +96,6 @@ jobs:
             data/rules-lite.txt ${SERVER_USER}@${SERVER_IP}:/tmp/push_rules-lite.txt
           echo "文件已推送 (ts=$TS)"
 
-          echo "=== 触发服务器接收脚本（校验+替换+重启+验证+回滚） ==="
+          echo "=== 触发服务器接收脚本（校验+替换订阅源+热刷新验证+回滚，零中断不重启） ==="
           $SSH 'sudo /opt/luckdns-site/push-receive.sh /tmp/push_rules-lite.txt'
           echo "=== 服务器同步完成 ==="
