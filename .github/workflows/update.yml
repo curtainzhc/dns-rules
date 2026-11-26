@@ -99,3 +99,9 @@ jobs:
           echo "=== 触发服务器接收脚本（校验+替换订阅源+热刷新验证+回滚，零中断不重启） ==="
           $SSH 'sudo /opt/luckdns-site/push-receive.sh /tmp/push_rules-lite.txt'
           echo "=== 服务器同步完成 ==="
+
+          echo "=== 同步 DoH/DoT 描述文件到站点下载目录 ==="
+          scp -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -o ConnectTimeout=20 \
+            ios/LuckDNS-DoH.mobileconfig ios/LuckDNS-DoT.mobileconfig \
+            ${SERVER_USER}@${SERVER_IP}:/opt/luckdns-site/
+          echo "=== 描述文件同步完成 ==="
