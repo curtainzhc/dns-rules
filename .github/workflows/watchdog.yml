@@ -75,9 +75,9 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: full-rules
-          name: 规则全集（全量1147万 + 精简版750万）
+          name: 规则全集（全量1159万 + 精简版750万）
           body: |
-            全量 rules.txt（1147万条）与精简版 rules-lite.txt（750万条）均超 Git 100MB 单文件限制，故走 Release。
+            全量 rules.txt（1159万条）与精简版 rules-lite.txt（750万条）均超 Git 100MB 单文件限制，故走 Release。
             项目与服务器统一使用精简版 750 万条。
           files: |
             data/rules.txt
