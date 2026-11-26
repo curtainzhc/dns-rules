@@ -1,11 +1,11 @@
 {
-  "time": "2026-11-26 15:37",
+  "time": "2026-11-26 16:01",
   "event": "手动",
   "first": false,
   "total": {
-    "new": 11852026,
-    "old": 11852025,
-    "delta": 1
+    "new": 11852156,
+    "old": 11852026,
+    "delta": 130
   },
   "lite": {
     "new": 7500000,
@@ -19,11 +19,53 @@
   },
   "src_changed": [
     {
+      "num": "04",
+      "name": "217heidai",
+      "old": 41879,
+      "new": 41966,
+      "delta": 87
+    },
+    {
+      "num": "41",
+      "name": "trli-Pro",
+      "old": 8628811,
+      "new": 8628776,
+      "delta": -35
+    },
+    {
+      "num": "36",
+      "name": "AdGuard-DNS",
+      "old": 67,
+      "new": 37,
+      "delta": -30
+    },
+    {
+      "num": "20",
+      "name": "hagezi-pro",
+      "old": 45094,
+      "new": 45084,
+      "delta": -10
+    },
+    {
+      "num": "18",
+      "name": "dnshosts-all",
+      "old": 463589,
+      "new": 463584,
+      "delta": -5
+    },
+    {
+      "num": "58",
+      "name": "Frellwit-Swedish",
+      "old": 2,
+      "new": 0,
+      "delta": -2
+    },
+    {
       "num": "42",
       "name": "EasyList-China",
-      "old": 0,
-      "new": 1,
-      "delta": 1
+      "old": 1,
+      "new": 0,
+      "delta": -1
     }
   ]
 }
