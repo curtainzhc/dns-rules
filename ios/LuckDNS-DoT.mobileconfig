@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>DNSSettings</key>
+			<dict>
+				<key>DNSProtocol</key>
+				<string>TLS</string>
+				<key>ServerNames</key>
+				<array>
+					<string>zhcluck.duckdns.org</string>
+				</array>
+				<key>Servers</key>
+				<array>
+					<dict>
+						<key>Address</key>
+						<string>zhcluck.duckdns.org</string>
+						<key>Port</key>
+						<integer>853</integer>
+					</dict>
+				</array>
+			</dict>
+			<key>PayloadDescription</key>
+			<string>DNS-over-TLS 加密 DNS，服务器 zhcluck.duckdns.org，防劫持防窥探</string>
+			<key>PayloadDisplayName</key>
+			<string>LuckDNS 加密 DNS (DoT)</string>
+			<key>PayloadEnabled</key>
+			<true/>
+			<key>PayloadIdentifier</key>
+			<string>com.luckdns.dns.settings.9E5F2114-D26B-4659-9356-0E5330D5FE18</string>
+			<key>PayloadType</key>
+			<string>com.apple.dnsSettings.managed</string>
+			<key>PayloadUUID</key>
+			<string>401A20A9-8331-4358-B405-CE38ABBF6F7A</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>PayloadDescription</key>
+	<string>DoT 加密 DNS：全设备 DNS 查询经 TLS 加密，防劫持防窥探</string>
+	<key>PayloadDisplayName</key>
+	<string>LuckDNS 加密 DNS</string>
+	<key>PayloadIdentifier</key>
+	<string>com.luckdns.dns.profile.5404A037-5964-4DD0-A8D7-6B52B26D81B3</string>
+	<key>PayloadOrganization</key>
+	<string>LuckDNS</string>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadUUID</key>
+	<string>573ED9A1-FEDE-43D2-A7E5-D5E230C1AE7F</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+</dict>
+</plist>
