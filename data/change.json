@@ -1,11 +1,11 @@
 {
-  "time": "2026-11-26 10:17",
-  "event": "定时",
+  "time": "2026-11-26 13:45",
+  "event": "手动",
   "first": false,
   "total": {
-    "new": 11151903,
-    "old": 11151874,
-    "delta": 29
+    "new": 11155227,
+    "old": 11151903,
+    "delta": 3324
   },
   "lite": {
     "new": 7500000,
@@ -19,81 +19,67 @@
   },
   "src_changed": [
     {
-      "num": "03",
-      "name": "anti-AD",
-      "old": 85889,
-      "new": 85182,
-      "delta": -707
-    },
-    {
-      "num": "06",
-      "name": "GOODBYEADS拦截",
-      "old": 38240,
-      "new": 38841,
-      "delta": 601
-    },
-    {
       "num": "41",
       "name": "trli-Pro",
-      "old": 8624847,
-      "new": 8625035,
-      "delta": 188
+      "old": 8625035,
+      "new": 8628811,
+      "delta": 3776
     },
     {
-      "num": "19",
-      "name": "AdRules-plus",
-      "old": 3447,
-      "new": 3279,
-      "delta": -168
+      "num": "35",
+      "name": "hagezi-DoH绕过",
+      "old": 313,
+      "new": 136,
+      "delta": -177
     },
     {
-      "num": "20",
-      "name": "hagezi-pro",
-      "old": 45025,
-      "new": 45094,
-      "delta": 69
+      "num": "38",
+      "name": "OISD-Big",
+      "old": 375,
+      "new": 208,
+      "delta": -167
     },
     {
-      "num": "04",
-      "name": "217heidai",
-      "old": 41824,
-      "new": 41879,
-      "delta": 55
-    },
-    {
-      "num": "21",
-      "name": "hagezi-tif",
-      "old": 1119119,
-      "new": 1119101,
-      "delta": -18
-    },
-    {
-      "num": "01",
-      "name": "天影ADS拦截",
-      "old": 114242,
-      "new": 114256,
-      "delta": 14
-    },
-    {
-      "num": "10",
-      "name": "EasyPrivacy",
-      "old": 9872,
-      "new": 9868,
-      "delta": -4
-    },
-    {
-      "num": "36",
-      "name": "AdGuard-DNS",
-      "old": 68,
-      "new": 66,
-      "delta": -2
+      "num": "37",
+      "name": "AdGuard-钓鱼",
+      "old": 209,
+      "new": 148,
+      "delta": -61
     },
     {
       "num": "18",
       "name": "dnshosts-all",
-      "old": 463609,
-      "new": 463610,
+      "old": 463610,
+      "new": 463589,
+      "delta": -21
+    },
+    {
+      "num": "36",
+      "name": "AdGuard-DNS",
+      "old": 66,
+      "new": 46,
+      "delta": -20
+    },
+    {
+      "num": "10",
+      "name": "EasyPrivacy",
+      "old": 9868,
+      "new": 9869,
       "delta": 1
+    },
+    {
+      "num": "01",
+      "name": "天影ADS拦截",
+      "old": 114256,
+      "new": 114255,
+      "delta": -1
+    },
+    {
+      "num": "40",
+      "name": "hagezi-Hoster",
+      "old": 62,
+      "new": 61,
+      "delta": -1
     }
   ]
 }
