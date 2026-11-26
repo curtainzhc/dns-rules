@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>DNSSettings</key>
+			<dict>
+				<key>DNSProtocol</key>
+				<string>HTTPS</string>
+				<key>ServerURL</key>
+				<string>https://zhcluck.duckdns.org/dns-query</string>
+			</dict>
+			<key>PayloadDescription</key>
+			<string>DNS-over-HTTPS 加密 DNS，服务器 zhcluck.duckdns.org，防劫持防窥探</string>
+			<key>PayloadDisplayName</key>
+			<string>LuckDNS 加密 DNS (DoH)</string>
+			<key>PayloadEnabled</key>
+			<true/>
+			<key>PayloadIdentifier</key>
+			<string>com.luckdns.dns.settings.6E9370B2-E7E6-43E8-8410-870F3D8FFF02</string>
+			<key>PayloadType</key>
+			<string>com.apple.dnsSettings.managed</string>
+			<key>PayloadUUID</key>
+			<string>D7565C98-5501-4CC7-9EA6-3FEE6A44D588</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>PayloadDescription</key>
+	<string>DoH 加密 DNS：全设备 DNS 查询经 HTTPS 加密，防劫持防窥探</string>
+	<key>PayloadDisplayName</key>
+	<string>LuckDNS 加密 DNS (DoH)</string>
+	<key>PayloadIdentifier</key>
+	<string>com.luckdns.doh.profile.416553EB-F1B7-49F5-80BA-DD7A71BAEE13</string>
+	<key>PayloadOrganization</key>
+	<string>LuckDNS</string>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadUUID</key>
+	<string>C3D24E8A-76B7-4301-8916-18112799A40A</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+</dict>
+</plist>
