@@ -1,11 +1,11 @@
 {
-  "time": "2026-11-28 00:34",
+  "time": "2026-11-28 01:01",
   "event": "定时",
   "first": false,
   "total": {
-    "new": 11878949,
-    "old": 11898272,
-    "delta": -19323
+    "new": 11879148,
+    "old": 11878949,
+    "delta": 199
   },
   "lite": {
     "new": 7500000,
@@ -21,261 +21,93 @@
     {
       "num": "21",
       "name": "hagezi-tif",
-      "old": 1079214,
-      "new": 1148100,
-      "delta": 68886
-    },
-    {
-      "num": "23",
-      "name": "hagezi-gambling",
-      "old": 659881,
-      "new": 626264,
-      "delta": -33617
-    },
-    {
-      "num": "18",
-      "name": "dnshosts-all",
-      "old": 463697,
-      "new": 437947,
-      "delta": -25750
-    },
-    {
-      "num": "41",
-      "name": "trli-Pro",
-      "old": 8679375,
-      "new": 8656790,
-      "delta": -22585
-    },
-    {
-      "num": "80",
-      "name": "hagezi-Ultimate",
-      "old": 20124,
-      "new": 14264,
-      "delta": -5860
+      "old": 1148100,
+      "new": 1150152,
+      "delta": 2052
     },
     {
       "num": "20",
       "name": "hagezi-pro",
-      "old": 49570,
-      "new": 47573,
-      "delta": -1997
+      "old": 47573,
+      "new": 46066,
+      "delta": -1507
     },
     {
-      "num": "59",
-      "name": "PhishingArmy",
-      "old": 679,
-      "new": 2427,
-      "delta": 1748
-    },
-    {
-      "num": "01",
-      "name": "天影ADS拦截",
-      "old": 113688,
-      "new": 114323,
-      "delta": 635
-    },
-    {
-      "num": "64",
-      "name": "1Hosts-Lite",
-      "old": 271,
-      "new": 705,
-      "delta": 434
-    },
-    {
-      "num": "70",
-      "name": "hagezi-Normal",
-      "old": 259,
-      "new": 676,
-      "delta": 417
+      "num": "41",
+      "name": "trli-Pro",
+      "old": 8656790,
+      "new": 8657232,
+      "delta": 442
     },
     {
       "num": "04",
       "name": "217heidai",
-      "old": 42032,
-      "new": 41651,
-      "delta": -381
+      "old": 41651,
+      "new": 41329,
+      "delta": -322
     },
     {
-      "num": "79",
-      "name": "hagezi-AntiPiracy",
-      "old": 61977,
-      "new": 61610,
-      "delta": -367
+      "num": "23",
+      "name": "hagezi-gambling",
+      "old": 626264,
+      "new": 626137,
+      "delta": -127
     },
     {
-      "num": "38",
-      "name": "OISD-Big",
-      "old": 123,
-      "new": 338,
-      "delta": 215
-    },
-    {
-      "num": "19",
-      "name": "AdRules-plus",
-      "old": 3457,
-      "new": 3296,
-      "delta": -161
-    },
-    {
-      "num": "50",
-      "name": "HackedMalware",
-      "old": 432,
-      "new": 590,
-      "delta": 158
-    },
-    {
-      "num": "77",
-      "name": "ShadowWhisperer-Malware",
-      "old": 2998,
-      "new": 2856,
-      "delta": -142
-    },
-    {
-      "num": "35",
-      "name": "hagezi-DoH绕过",
-      "old": 566,
-      "new": 440,
-      "delta": -126
-    },
-    {
-      "num": "88",
-      "name": "ShadowWhisperer-Tracking",
-      "old": 4136,
-      "new": 4248,
-      "delta": 112
-    },
-    {
-      "num": "89",
-      "name": "1Hosts-Xtra",
-      "old": 588907,
-      "new": 589014,
-      "delta": 107
-    },
-    {
-      "num": "87",
-      "name": "hagezi-URLShortener",
-      "old": 7325,
-      "new": 7255,
-      "delta": -70
-    },
-    {
-      "num": "67",
-      "name": "Phishing-PhishTank",
-      "old": 145,
-      "new": 87,
-      "delta": -58
+      "num": "70",
+      "name": "hagezi-Normal",
+      "old": 676,
+      "new": 575,
+      "delta": -101
     },
     {
       "num": "66",
       "name": "AdRules-DNS",
-      "old": 21,
-      "new": 57,
-      "delta": 36
+      "old": 57,
+      "new": 10,
+      "delta": -47
     },
     {
-      "num": "57",
-      "name": "ABPVN",
-      "old": 19,
-      "new": 50,
-      "delta": 31
+      "num": "38",
+      "name": "OISD-Big",
+      "old": 338,
+      "new": 305,
+      "delta": -33
     },
     {
-      "num": "52",
-      "name": "URLHaus",
-      "old": 17011,
-      "new": 16982,
-      "delta": -29
+      "num": "59",
+      "name": "PhishingArmy",
+      "old": 2427,
+      "new": 2408,
+      "delta": -19
     },
     {
-      "num": "53",
-      "name": "Dandelion-AntiMalware",
-      "old": 609,
-      "new": 623,
-      "delta": 14
+      "num": "79",
+      "name": "hagezi-AntiPiracy",
+      "old": 61610,
+      "new": 61591,
+      "delta": -19
     },
     {
-      "num": "36",
-      "name": "AdGuard-DNS",
-      "old": 37,
-      "new": 50,
-      "delta": 13
+      "num": "80",
+      "name": "hagezi-Ultimate",
+      "old": 14264,
+      "new": 14255,
+      "delta": -9
     },
     {
-      "num": "45",
-      "name": "DanPollock",
-      "old": 7,
-      "new": 18,
-      "delta": 11
+      "num": "18",
+      "name": "dnshosts-all",
+      "old": 437947,
+      "new": 437942,
+      "delta": -5
     },
     {
-      "num": "65",
-      "name": "turk-adlist",
-      "old": 3,
-      "new": 12,
-      "delta": 9
-    },
-    {
-      "num": "40",
-      "name": "hagezi-Hoster",
-      "old": 81,
-      "new": 75,
-      "delta": -6
-    },
-    {
-      "num": "55",
-      "name": "Polish-Pihole",
-      "old": 989,
-      "new": 991,
-      "delta": 2
-    },
-    {
-      "num": "69",
-      "name": "StevenBlack",
-      "old": 33,
-      "new": 35,
-      "delta": 2
-    },
-    {
-      "num": "82",
-      "name": "hagezi-ProPlus",
-      "old": 1,
-      "new": 0,
+      "num": "89",
+      "name": "1Hosts-Xtra",
+      "old": 589014,
+      "new": 589013,
       "delta": -1
-    },
-    {
-      "num": "78",
-      "name": "EasyList-Hebrew",
-      "old": 2,
-      "new": 3,
-      "delta": 1
-    },
-    {
-      "num": "56",
-      "name": "YousList",
-      "old": 0,
-      "new": 1,
-      "delta": 1
-    },
-    {
-      "num": "85",
-      "name": "ShadowWhisperer-Dating",
-      "old": 872,
-      "new": 873,
-      "delta": 1
-    },
-    {
-      "num": "10",
-      "name": "EasyPrivacy",
-      "old": 9869,
-      "new": 9870,
-      "delta": 1
-    },
-    {
-      "num": "75",
-      "name": "Turkish-AdHosts",
-      "old": 1,
-      "new": 2,
-      "delta": 1
     }
   ]
 }
