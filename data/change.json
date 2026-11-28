@@ -1,11 +1,11 @@
 {
-  "time": "2026-11-28 09:42",
-  "event": "定时",
+  "time": "2026-11-28 12:36",
+  "event": "手动",
   "first": false,
   "total": {
-    "new": 11878515,
+    "new": 11878357,
     "old": 11878515,
-    "delta": 0
+    "delta": -158
   },
   "lite": {
     "new": 7500000,
@@ -17,5 +17,118 @@
     "old": 12016,
     "delta": 0
   },
-  "src_changed": []
+  "src_changed": [
+    {
+      "num": "59",
+      "name": "PhishingArmy",
+      "old": 1985,
+      "new": 1917,
+      "delta": -68
+    },
+    {
+      "num": "36",
+      "name": "AdGuard-DNS",
+      "old": 45,
+      "new": 77,
+      "delta": 32
+    },
+    {
+      "num": "66",
+      "name": "AdRules-DNS",
+      "old": 29,
+      "new": 4,
+      "delta": -25
+    },
+    {
+      "num": "38",
+      "name": "OISD-Big",
+      "old": 340,
+      "new": 329,
+      "delta": -11
+    },
+    {
+      "num": "89",
+      "name": "1Hosts-Xtra",
+      "old": 589007,
+      "new": 588999,
+      "delta": -8
+    },
+    {
+      "num": "70",
+      "name": "hagezi-Normal",
+      "old": 607,
+      "new": 601,
+      "delta": -6
+    },
+    {
+      "num": "67",
+      "name": "Phishing-PhishTank",
+      "old": 87,
+      "new": 81,
+      "delta": -6
+    },
+    {
+      "num": "52",
+      "name": "URLHaus",
+      "old": 17090,
+      "new": 17087,
+      "delta": -3
+    },
+    {
+      "num": "10",
+      "name": "EasyPrivacy",
+      "old": 9870,
+      "new": 9873,
+      "delta": 3
+    },
+    {
+      "num": "42",
+      "name": "EasyList-China",
+      "old": 5,
+      "new": 2,
+      "delta": -3
+    },
+    {
+      "num": "64",
+      "name": "1Hosts-Lite",
+      "old": 722,
+      "new": 720,
+      "delta": -2
+    },
+    {
+      "num": "18",
+      "name": "dnshosts-all",
+      "old": 470487,
+      "new": 470485,
+      "delta": -2
+    },
+    {
+      "num": "80",
+      "name": "hagezi-Ultimate",
+      "old": 14242,
+      "new": 14241,
+      "delta": -1
+    },
+    {
+      "num": "77",
+      "name": "ShadowWhisperer-Malware",
+      "old": 3066,
+      "new": 3065,
+      "delta": -1
+    },
+    {
+      "num": "41",
+      "name": "trli-Pro",
+      "old": 8683458,
+      "new": 8683457,
+      "delta": -1
+    },
+    {
+      "num": "14",
+      "name": "HG",
+      "old": 11764,
+      "new": 11763,
+      "delta": -1
+    }
+  ]
 }
