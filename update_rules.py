@@ -245,13 +245,17 @@ re_hosts = re.compile(r'^(?:0\.0\.0\.0|127\.0\.0\.1|::1?)\s+(.+)$', re.I)
 re_clean = re.compile(r'^[0-9a-zA-Z]([0-9a-zA-Z\-._]*[0-9a-zA-Z])?$')
 SKIP_DOM = {"localhost","localhost.localdomain","broadcasthost","ip6-localhost","ip6-loopback","local"}
 
-# 根域级 CDN/云服务商：这类规则把整个 CDN 全部拦掉，而 Akamai/Cloudflare/AWS 等
-# 承载苹果、微软、银行、政府等海量正常服务，误伤极大、拦截价值极低。
-# 仅剔除「整域」规则(如 ||akadns.net^)，旗下具体的广告子域(如 ||a1.adformnet.akadns.net^)仍保留。
-BLOCK_CDN_ROOTS = {
+# 整域误伤保护：这类规则把整个根域全部拦掉，误伤极大、拦截价值极低。
+#  1) 根域级 CDN/云服务商：Akamai/Cloudflare/AWS 等承载苹果、微软、银行、政府等海量正常服务
+#  2) 国民级 App/服务主域：高德/大众点评/网易邮箱/谷歌/字节等主域，整域拦会让整个 App 不可用
+# 仅剔除「整域」规则(如 ||amap.com^)，旗下具体的广告子域(如 ||adashx.ut.amap.com^)仍保留。
+BLOCK_OVERBLOCK_ROOTS = {
+    # CDN / 云服务商
     "akadns.net","akadns6.net","akamaized.net","akamai.net","akamaiedge.net",
     "edgekey.net","edgesuite.net","cloudflare.net","cloudfront.net",
     "amazonaws.com","azureedge.net","azurefd.net","fastly.net","fastlylb.net",
+    # 国民级 App / 服务主域
+    "amap.com","autonavi.com","dianping.com","126.com","google.com","bytedance.com",
 }
 
 def norm(d): return d.strip().lower().rstrip(".")
@@ -384,9 +388,9 @@ def build():
     def add(d, outfmt, cat, num):
         m = bit(num)
         src_mask[d] = src_mask.get(d, 0) | m
-        # 根域级 CDN/云服务商整域拦截：误伤苹果/微软/银行等海量正常服务，剔除
+        # 整域误伤保护：剔除 CDN 根域 + 国民级App主域的粗暴整域拦截
         # (旗下具体广告子域不受影响，仍正常收录)
-        if d in BLOCK_CDN_ROOTS:
+        if d in BLOCK_OVERBLOCK_ROOTS:
             return False
         if d in cand or d in allow_set or has_allowed_parent(d):
             return False
