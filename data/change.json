@@ -1,11 +1,11 @@
 {
-  "time": "2026-11-28 01:01",
+  "time": "2026-11-28 09:27",
   "event": "定时",
   "first": false,
   "total": {
-    "new": 11879148,
-    "old": 11878949,
-    "delta": 199
+    "new": 11878515,
+    "old": 11879148,
+    "delta": -633
   },
   "lite": {
     "new": 7500000,
@@ -21,93 +21,282 @@
     {
       "num": "21",
       "name": "hagezi-tif",
-      "old": 1148100,
-      "new": 1150152,
-      "delta": 2052
-    },
-    {
-      "num": "20",
-      "name": "hagezi-pro",
-      "old": 47573,
-      "new": 46066,
-      "delta": -1507
-    },
-    {
-      "num": "41",
-      "name": "trli-Pro",
-      "old": 8656790,
-      "new": 8657232,
-      "delta": 442
-    },
-    {
-      "num": "04",
-      "name": "217heidai",
-      "old": 41651,
-      "new": 41329,
-      "delta": -322
-    },
-    {
-      "num": "23",
-      "name": "hagezi-gambling",
-      "old": 626264,
-      "new": 626137,
-      "delta": -127
-    },
-    {
-      "num": "70",
-      "name": "hagezi-Normal",
-      "old": 676,
-      "new": 575,
-      "delta": -101
-    },
-    {
-      "num": "66",
-      "name": "AdRules-DNS",
-      "old": 57,
-      "new": 10,
-      "delta": -47
-    },
-    {
-      "num": "38",
-      "name": "OISD-Big",
-      "old": 338,
-      "new": 305,
-      "delta": -33
-    },
-    {
-      "num": "59",
-      "name": "PhishingArmy",
-      "old": 2427,
-      "new": 2408,
-      "delta": -19
-    },
-    {
-      "num": "79",
-      "name": "hagezi-AntiPiracy",
-      "old": 61610,
-      "new": 61591,
-      "delta": -19
-    },
-    {
-      "num": "80",
-      "name": "hagezi-Ultimate",
-      "old": 14264,
-      "new": 14255,
-      "delta": -9
+      "old": 1150152,
+      "new": 1088706,
+      "delta": -61446
     },
     {
       "num": "18",
       "name": "dnshosts-all",
-      "old": 437947,
-      "new": 437942,
-      "delta": -5
+      "old": 437942,
+      "new": 470487,
+      "delta": 32545
+    },
+    {
+      "num": "41",
+      "name": "trli-Pro",
+      "old": 8657232,
+      "new": 8683458,
+      "delta": 26226
+    },
+    {
+      "num": "04",
+      "name": "217heidai",
+      "old": 41329,
+      "new": 41752,
+      "delta": 423
+    },
+    {
+      "num": "59",
+      "name": "PhishingArmy",
+      "old": 2408,
+      "new": 1985,
+      "delta": -423
+    },
+    {
+      "num": "23",
+      "name": "hagezi-gambling",
+      "old": 626137,
+      "new": 626477,
+      "delta": 340
+    },
+    {
+      "num": "77",
+      "name": "ShadowWhisperer-Malware",
+      "old": 2856,
+      "new": 3066,
+      "delta": 210
+    },
+    {
+      "num": "20",
+      "name": "hagezi-pro",
+      "old": 46066,
+      "new": 46232,
+      "delta": 166
+    },
+    {
+      "num": "19",
+      "name": "AdRules-plus",
+      "old": 3296,
+      "new": 3460,
+      "delta": 164
+    },
+    {
+      "num": "88",
+      "name": "ShadowWhisperer-Tracking",
+      "old": 4248,
+      "new": 4379,
+      "delta": 131
+    },
+    {
+      "num": "52",
+      "name": "URLHaus",
+      "old": 16982,
+      "new": 17090,
+      "delta": 108
+    },
+    {
+      "num": "79",
+      "name": "hagezi-AntiPiracy",
+      "old": 61591,
+      "new": 61689,
+      "delta": 98
+    },
+    {
+      "num": "35",
+      "name": "hagezi-DoH绕过",
+      "old": 440,
+      "new": 490,
+      "delta": 50
+    },
+    {
+      "num": "38",
+      "name": "OISD-Big",
+      "old": 305,
+      "new": 340,
+      "delta": 35
+    },
+    {
+      "num": "70",
+      "name": "hagezi-Normal",
+      "old": 575,
+      "new": 607,
+      "delta": 32
+    },
+    {
+      "num": "66",
+      "name": "AdRules-DNS",
+      "old": 10,
+      "new": 29,
+      "delta": 19
+    },
+    {
+      "num": "64",
+      "name": "1Hosts-Lite",
+      "old": 705,
+      "new": 722,
+      "delta": 17
+    },
+    {
+      "num": "01",
+      "name": "天影ADS拦截",
+      "old": 114323,
+      "new": 114339,
+      "delta": 16
+    },
+    {
+      "num": "28",
+      "name": "hagezi-winoffice",
+      "old": 129,
+      "new": 143,
+      "delta": 14
+    },
+    {
+      "num": "80",
+      "name": "hagezi-Ultimate",
+      "old": 14255,
+      "new": 14242,
+      "delta": -13
     },
     {
       "num": "89",
       "name": "1Hosts-Xtra",
-      "old": 589014,
-      "new": 589013,
+      "old": 589013,
+      "new": 589007,
+      "delta": -6
+    },
+    {
+      "num": "45",
+      "name": "DanPollock",
+      "old": 18,
+      "new": 12,
+      "delta": -6
+    },
+    {
+      "num": "26",
+      "name": "hagezi-apple",
+      "old": 94,
+      "new": 88,
+      "delta": -6
+    },
+    {
+      "num": "36",
+      "name": "AdGuard-DNS",
+      "old": 50,
+      "new": 45,
+      "delta": -5
+    },
+    {
+      "num": "42",
+      "name": "EasyList-China",
+      "old": 0,
+      "new": 5,
+      "delta": 5
+    },
+    {
+      "num": "24",
+      "name": "hagezi-tiktok",
+      "old": 269,
+      "new": 265,
+      "delta": -4
+    },
+    {
+      "num": "06",
+      "name": "GOODBYEADS拦截",
+      "old": 38841,
+      "new": 38845,
+      "delta": 4
+    },
+    {
+      "num": "50",
+      "name": "HackedMalware",
+      "old": 590,
+      "new": 594,
+      "delta": 4
+    },
+    {
+      "num": "31",
+      "name": "hagezi-roku",
+      "old": 64,
+      "new": 61,
+      "delta": -3
+    },
+    {
+      "num": "33",
+      "name": "hagezi-oppo",
+      "old": 515,
+      "new": 518,
+      "delta": 3
+    },
+    {
+      "num": "32",
+      "name": "hagezi-vivo",
+      "old": 277,
+      "new": 279,
+      "delta": 2
+    },
+    {
+      "num": "87",
+      "name": "hagezi-URLShortener",
+      "old": 7255,
+      "new": 7253,
+      "delta": -2
+    },
+    {
+      "num": "40",
+      "name": "hagezi-Hoster",
+      "old": 75,
+      "new": 77,
+      "delta": 2
+    },
+    {
+      "num": "27",
+      "name": "hagezi-huawei",
+      "old": 133,
+      "new": 132,
       "delta": -1
+    },
+    {
+      "num": "03",
+      "name": "anti-AD",
+      "old": 85182,
+      "new": 85183,
+      "delta": 1
+    },
+    {
+      "num": "34",
+      "name": "hagezi-xiaomi",
+      "old": 262,
+      "new": 263,
+      "delta": 1
+    },
+    {
+      "num": "29",
+      "name": "hagezi-samsung",
+      "old": 150,
+      "new": 149,
+      "delta": -1
+    },
+    {
+      "num": "69",
+      "name": "StevenBlack",
+      "old": 35,
+      "new": 34,
+      "delta": -1
+    },
+    {
+      "num": "25",
+      "name": "hagezi-amazon",
+      "old": 54,
+      "new": 55,
+      "delta": 1
+    },
+    {
+      "num": "22",
+      "name": "hagezi-dyndns",
+      "old": 1939,
+      "new": 1940,
+      "delta": 1
     }
   ]
 }
