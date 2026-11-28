@@ -1,0 +1,46 @@
+name: 应急修复 - 重启AdGuard强制加载新规则
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  restart:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 重启AdGuard并强制加载新规则
+        env:
+          SERVER_IP: ${{ secrets.SERVER_IP }}
+          SERVER_USER: ${{ secrets.SERVER_USER }}
+          SERVER_SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SERVER_SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H "$SERVER_IP" >> ~/.ssh/known_hosts 2>/dev/null
+          SSH="ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -o ConnectTimeout=20 ${SERVER_USER}@${SERVER_IP}"
+
+          echo "=== 重启前状态 ==="
+          $SSH 'systemctl is-active adguardhome; echo CACHE:; sudo wc -l /opt/adguardhome/work/data/filters/1795611427.txt; echo SITE:; sudo wc -l /opt/luckdns-site/rules-lite.txt'
+
+          echo "=== 停止AdGuard ==="
+          $SSH 'sudo systemctl stop adguardhome'
+          sleep 3
+
+          echo "=== 用站点新规则覆盖AdGuard缓存 ==="
+          $SSH 'sudo cp /opt/luckdns-site/rules-lite.txt /opt/adguardhome/work/data/filters/1795611427.txt; sudo wc -l /opt/adguardhome/work/data/filters/1795611427.txt'
+
+          echo "=== 启动AdGuard ==="
+          $SSH 'sudo systemctl start adguardhome'
+
+          echo "=== 等待加载750万规则(90秒) ==="
+          sleep 90
+
+          echo "=== 验证服务与控制面 ==="
+          $SSH 'systemctl is-active adguardhome'
+          $SSH 'curl -s -m 15 -u admin:Admin123456 http://127.0.0.1:3000/control/filtering/status | head -c 400'
+
+          echo ""
+          echo "=== 验证高德放行 ==="
+          $SSH 'curl -s -m 15 "http://127.0.0.1:8080/api/dnstest?domain=www.amap.com"'
+          echo ""
+          $SSH 'curl -s -m 15 "http://127.0.0.1:8080/api/dnstest?domain=doubleclick.net"'
